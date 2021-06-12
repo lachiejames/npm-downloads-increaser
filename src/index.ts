@@ -1,9 +1,29 @@
-// import { request } from "gaxios";
-// var a = 0;
-// setInterval(addDL, 1000);
-// const download = async () => {
-//     await request("https://registry.npmjs.org/getanimals/-/getanimals-1.0.1.tgz").then((response) => {
-//         a++;
-//         console.log(`Added ${a} Downloads!\n`);
-//     });
-// };
+import { request } from "gaxios";
+
+const downloadPackage = async (name: string, version: string) => {
+    const packageUrl = `https://registry.yarnpkg.com/${name}/-/${name}-${version}.tgz`;
+    const response = await request({ url: packageUrl, retry: true });
+
+    if (response.status !== 200) {
+        throw Error(`Failed to download ${packageUrl}\n${response.statusText}`);
+    }
+};
+
+const sleep = (milliseconds: number) => {
+    return new Promise((resolve) => setTimeout(resolve, milliseconds));
+};
+
+const run = async () => {
+    const numDownloads = 100;
+    const timeBetweenDownloads = 3000;
+    const packageName = "code-review-leaderboard";
+    const packageVersion = "1.2.3";
+
+    for (let i = 0; i < numDownloads; i++) {
+        await downloadPackage(packageName, packageVersion);
+        await sleep(timeBetweenDownloads);
+        console.log(i);
+    }
+};
+
+run();
