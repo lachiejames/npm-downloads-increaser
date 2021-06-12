@@ -1,5 +1,5 @@
 import { request } from "gaxios";
-import { Config } from "./config.model";
+import { Config } from "./models/config.model";
 
 const downloadPackage = async (name: string, version: string) => {
     const packageUrl = `https://registry.yarnpkg.com/${name}/-/${name}-${version}.tgz`;
