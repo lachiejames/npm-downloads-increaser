@@ -5,7 +5,7 @@
     "license": "UNLICENSED",
     "main": "lib/index.js",
     "dependencies": {
-        "gaxios": "4.2.1",
+        "gaxios": "4.3.0",
         "ora": "5.4.0",
         "prompts": "2.4.1"
     },
