@@ -1,9 +1,11 @@
-import { getMockConfig } from "../../test-utils/mock-config";
-import { downloadPackage, run } from "./spammer";
 import MockConsole from "jest-mock-console";
 import { cleanAll } from "nock";
+
+import { getMockConfig } from "../../test-utils/mock-config";
 import { setHttpErrorResponse, setMockResponses } from "../../test-utils/set-http-mocks";
 import { Config } from "../models/config.model";
+
+import { downloadPackage, run } from "./spammer";
 
 describe("spammer", () => {
     let config: Config;

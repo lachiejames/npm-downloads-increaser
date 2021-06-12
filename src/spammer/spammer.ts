@@ -1,4 +1,5 @@
 import { GaxiosError, request } from "gaxios";
+
 import { Config } from "../models/config.model";
 
 const sleep = async (milliseconds: number): Promise<void> => {
@@ -8,10 +9,10 @@ const sleep = async (milliseconds: number): Promise<void> => {
 export const downloadPackage = async (name: string, version: string): Promise<void> => {
     const packageUrl = `https://registry.yarnpkg.com/${name}/-/${name}-${version}.tgz`;
 
-    await request<any>({
+    await request<unknown>({
         url: packageUrl,
         method: "GET",
-    }).catch((response: GaxiosError<any>) => {
+    }).catch((response: GaxiosError<unknown>) => {
         throw Error(`Failed to download ${packageUrl}\n${response.message}`);
     });
 };

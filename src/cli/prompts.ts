@@ -1,6 +1,7 @@
 import prompts, { Answers } from "prompts";
 
 import { Config } from "../models/config.model";
+
 import { validateNumbers, validatePackageName, validatePackageVersion } from "./validators";
 
 // `prompts` package uses generics which accepts string literal values and then uses those values as types
