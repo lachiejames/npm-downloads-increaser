@@ -7,6 +7,7 @@ module.exports = {
         "!<rootDir>/lib*/**",
         "!<rootDir>/tmp*/**",
         "!**/index.ts",
+        "!**/cli.ts",
     ],
     coverageDirectory: "coverage",
     coverageThreshold: {
