@@ -10,6 +10,11 @@
         "prompts": "2.4.1"
     },
     "devDependencies": {
+        "@semantic-release/changelog": "5.0.1",
+        "@semantic-release/commit-analyzer": "8.0.1",
+        "@semantic-release/git": "9.0.0",
+        "@semantic-release/npm": "7.1.1",
+        "@semantic-release/release-notes-generator": "9.0.2",
         "@types/jest": "26.0.23",
         "@types/node": "15.0.2",
         "@types/prompts": "2.0.13",
@@ -22,6 +27,7 @@
         "jest-mock-console": "1.1.0",
         "nock": "13.1.0",
         "prettier": "2.3.1",
+        "semantic-release": "17.4.2",
         "ts-jest": "26.5.6",
         "typescript": "4.2.4"
     },
@@ -29,9 +35,34 @@
         "build": "tsc",
         "format": "prettier --write . & eslint . --fix",
         "start": "node .",
-        "test": "jest --coverage --detectOpenHandles --runInBand"
+        "test": "jest --coverage --detectOpenHandles --runInBand",
+        "semantic-release": "semantic-release"
     },
     "directories": {
         "lib": "lib"
+    },
+    "release": {
+        "branches": [
+            "main"
+        ],
+        "plugins": [
+            "@semantic-release/commit-analyzer",
+            "@semantic-release/npm",
+            "@semantic-release/release-notes-generator",
+            [
+                "@semantic-release/changelog",
+                {
+                    "changelogFile": "CHANGELOG.md"
+                }
+            ],
+            [
+                "@semantic-release/git",
+                {
+                    "assets": [
+                        "CHANGELOG.md"
+                    ]
+                }
+            ]
+        ]
     }
 }
