@@ -1,0 +1,34 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "allowSyntheticDefaultImports": true,
+        "alwaysStrict": true,
+        "baseUrl": ".",
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "listEmittedFiles": true,
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "outDir": "lib",
+        "paths": {
+            "code-review-leaderboard": ["lib"],
+            "code-review-leaderboard/*": ["lib/*"]
+        },
+        "removeComments": true,
+        "resolveJsonModule": true,
+        "sourceMap": true,
+        "strict": true,
+        "strictBindCallApply": true,
+        "strictFunctionTypes": true,
+        "strictNullChecks": true,
+        "strictPropertyInitialization": true,
+        "target": "ES2015"
+    },
+    "exclude": ["lib/**/*", "node_modules", "**/*.spec.ts", "**/*.test.ts", "babel.config.js", "__mocks__", "coverage"],
+    "include": ["src/**/*.ts"],
+    "lib": ["ES2015", "DOM"]
+}

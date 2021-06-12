@@ -1,0 +1,32 @@
+{
+    "name": "npm-download-spammer",
+    "version": "1.0.0",
+    "author": "Lachie James",
+    "license": "UNLICENSED",
+    "main": "lib/src/index.js",
+    "dependencies": {
+        "gaxios": "4.2.1"
+    },
+    "devDependencies": {
+        "@types/jest": "26.0.23",
+        "@types/node": "15.0.2",
+        "@typescript-eslint/eslint-plugin": "4.23.0",
+        "@typescript-eslint/parser": "4.23.0",
+        "eslint": "7.23.0",
+        "eslint-plugin-import": "2.22.1",
+        "find-root": "1.1.0",
+        "jest": "26.6.3",
+        "prettier": "2.3.1",
+        "ts-jest": "26.5.6",
+        "typescript": "4.2.4"
+    },
+    "scripts": {
+        "build": "tsc",
+        "format": "prettier --write . & eslint . --fix",
+        "start": "node .",
+        "test": "jest --coverage --detectOpenHandles --runInBand"
+    },
+    "directories": {
+        "lib": "lib"
+    }
+}
