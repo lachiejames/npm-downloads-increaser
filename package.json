@@ -6,7 +6,7 @@
     "main": "lib/index.js",
     "dependencies": {
         "gaxios": "4.2.1",
-        "ora": "5.4.0",
+        "ora": "5.4.1",
         "prompts": "2.4.1"
     },
     "devDependencies": {
