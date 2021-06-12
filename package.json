@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "author": "Lachie James",
     "license": "UNLICENSED",
-    "main": "lib/src/index.js",
+    "main": "lib/index.js",
     "dependencies": {
         "gaxios": "4.2.1",
         "ora": "5.4.0",
