@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/lachiejames/npm-popularity-increaser/compare/v1.0.0...v1.1.0) (2021-06-13)
+
+
+### Features
+
+* Rename project to `npm-popularity-increaser` since `npm-download-spammer` is not allowed ([bd97d5c](https://github.com/lachiejames/npm-popularity-increaser/commit/bd97d5c6c9d35ea4515effa52a078e5ded87d708))
+
 # 1.0.0 (2021-06-12)
 
 
