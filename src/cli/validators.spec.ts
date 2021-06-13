@@ -11,7 +11,6 @@ describe("cli validators", () => {
         });
     });
 
-
     describe("validateNumbers()", () => {
         it("if a number greater than 0 is entered, returns true", () => {
             expect(validateNumbers(500)).toEqual(true);

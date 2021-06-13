@@ -1,8 +1,8 @@
 import { GaxiosError, GaxiosResponse, request } from "gaxios";
-import { NpmjsResponse } from "../models/npmjs-response.model";
 
 import { logComplete, logDownload, logError } from "../cli/logger";
 import { Config } from "../models/config.model";
+import { NpmjsResponse } from "../models/npmjs-response.model";
 
 const sleep = async (milliseconds: number): Promise<void> => {
     return new Promise((resolve) => setTimeout(resolve, milliseconds));
