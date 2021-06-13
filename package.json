@@ -39,13 +39,17 @@
         "test": "jest --coverage --detectOpenHandles --runInBand",
         "semantic-release": "semantic-release"
     },
+    "bin": {
+        "npm-popularity-increaser": "./lib/cli.js"
+    },
     "directories": {
         "lib": "lib"
     },
     "keywords": [
         "npm",
-        "download",
-        "spam",
+        "npmjs",
+        "popularity",
+        "increaser",
         "spammer"
     ],
     "repository": "https://github.com/lachiejames/npm-popularity-increaser.git",
