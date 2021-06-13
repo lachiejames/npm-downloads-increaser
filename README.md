@@ -14,15 +14,22 @@ npm install -g npm-popularity-increaser
 
 ### Running
 
-You can set up your configuration from the command line using:
+Setup configuration and run:
 
 ```
 npm-popularity-increaser
 ```
 
-Once you specify your configuration, it will spamming downloads to for the provided package in the npmjs registry.  This will increase the popularity score on your npm package.
+Once you specify your configuration, this will start spamming downloads for the provided package in the npmjs registry. This will increase the popularity score of the npm package.
 
-![Example results](/assets/example-results.png?raw=true)
+### Configuration options
+
+| Property             | Description                                      | Example    |
+| -------------------- | ------------------------------------------------ | ---------- |
+| packageName          | Package to the popularity score of               | `"lodash"` |
+| packageVersion       | Package version to download                      | `"1.0.0"`  |
+| numDownloads         | Number of times to download the package          | `100000`   |
+| timeBetweenDownloads | Number of milliseconds to wait between downloads | `5000`     |
 
 ### Demo
 
