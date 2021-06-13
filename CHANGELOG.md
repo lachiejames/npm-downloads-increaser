@@ -3,4 +3,4 @@
 
 ### Features
 
-* Dev uplift ([c063b9f](https://github.com/lachiejames/npm-download-spammer/commit/c063b9f7e915342b8586ee28b3bf647375af7bf2))
+* Dev uplift ([c063b9f](https://github.com/lachiejames/npm-popularity-increaser/commit/c063b9f7e915342b8586ee28b3bf647375af7bf2))
