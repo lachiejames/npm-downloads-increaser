@@ -1,4 +1,4 @@
-import { validateNumbers, validatePackageName, validatePackageVersion } from "./validators";
+import { validateNumbers, validatePackageName } from "./validators";
 
 describe("cli validators", () => {
     describe("validatePackageName()", () => {
@@ -11,15 +11,6 @@ describe("cli validators", () => {
         });
     });
 
-    describe("validatePackageVersion()", () => {
-        it("if a version is entered, returns true", () => {
-            expect(validatePackageVersion("1.2.3")).toEqual(true);
-        });
-
-        it("if no version is entered, returns error message", () => {
-            expect(validatePackageVersion("")).toEqual("Must enter a package version");
-        });
-    });
 
     describe("validateNumbers()", () => {
         it("if a number greater than 0 is entered, returns true", () => {
@@ -34,7 +25,7 @@ describe("cli validators", () => {
             expect(validateNumbers(-3)).toEqual("Must be greater than 0");
         });
 
-        it("if no version is entered, returns error message", () => {
+        it("if no number is entered, returns error message", () => {
             expect(validateNumbers(undefined)).toEqual("Must enter a number");
         });
     });

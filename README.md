@@ -27,7 +27,6 @@ Once you specify your configuration, this will start spamming downloads for the 
 | Property             | Description                                      | Example    |
 | -------------------- | ------------------------------------------------ | ---------- |
 | packageName          | Package to the popularity score of               | `"lodash"` |
-| packageVersion       | Package version to download                      | `"1.0.0"`  |
 | numDownloads         | Number of times to download the package          | `100000`   |
 | timeBetweenDownloads | Number of milliseconds to wait between downloads | `5000`     |
 
