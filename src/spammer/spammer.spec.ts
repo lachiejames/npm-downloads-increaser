@@ -6,7 +6,7 @@ import { MOCK_PACKAGE_VERSION, setMockErrorResponses, setMockResponses } from ".
 import { terminalSpinner } from "../cli/logger";
 import { Config } from "../models/config.model";
 
-import { downloadPackage, run } from "./spammer";
+import { downloadPackage, queryNpms, run } from "./spammer";
 
 describe("spammer", () => {
     let config: Config;
@@ -17,6 +17,25 @@ describe("spammer", () => {
         config = getMockConfig();
     });
 
+    describe("queryNpms()", () => {
+        it("resolves when response is 200", async () => {
+            setMockResponses(config);
+
+            await expect(queryNpms(config.packageName)).resolves.not.toThrowError();
+        });
+
+        it("throws error when request fails", async () => {
+            setMockErrorResponses(config);
+
+            await expect(queryNpms(config.packageName)).rejects.toThrowError(
+                new Error(
+                    `Failed to download https://api.npms.io/v2/package/code-review-leaderboard\n` +
+                        `request to https://api.npms.io/v2/package/code-review-leaderboard failed, reason: test message`,
+                ),
+            );
+        });
+    });
+
     describe("downloadPackage()", () => {
         it("resolves when response is 200", async () => {
             setMockResponses(config);
@@ -24,11 +43,14 @@ describe("spammer", () => {
             await expect(downloadPackage(config.packageName, MOCK_PACKAGE_VERSION)).resolves.not.toThrowError();
         });
 
-        it("throws error when response is 500", async () => {
+        it("throws error when request fails", async () => {
             setMockErrorResponses(config);
 
             await expect(downloadPackage(config.packageName, MOCK_PACKAGE_VERSION)).rejects.toThrowError(
-                "Request failed with status code 500",
+                new Error(
+                    `Failed to download https://registry.yarnpkg.com/code-review-leaderboard/-/code-review-leaderboard-1.2.3.tgz\n` +
+                        `request to https://registry.yarnpkg.com/code-review-leaderboard/-/code-review-leaderboard-1.2.3.tgz failed, reason: test message`,
+                ),
             );
         });
     });
