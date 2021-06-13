@@ -1,6 +1,6 @@
 import { GaxiosError, request } from "gaxios";
-import { logComplete, logDownload, logError } from "../cli/logger";
 
+import { logComplete, logDownload, logError } from "../cli/logger";
 import { Config } from "../models/config.model";
 
 const sleep = async (milliseconds: number): Promise<void> => {
