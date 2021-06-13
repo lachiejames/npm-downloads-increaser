@@ -21,21 +21,29 @@ export const queryNpms = async (name: string): Promise<NpmjsResponse> => {
             throw Error(`Failed to download ${response.config.url}\n${response.message}`);
         });
 
-    if (npmsResponse?.data !== undefined) {
+    if (npmsResponse?.data && npmsResponse.status === 200) {
         return npmsResponse.data;
     } else {
-        throw Error("wtf");
+        throw Error(`NPMS responded with ${npmsResponse?.status} - ${npmsResponse?.statusText}`);
     }
 };
 
 export const downloadPackage = async (name: string, version: string): Promise<void> => {
+    let npmjsResponse: GaxiosResponse<unknown> | undefined;
+
     await request<unknown>({
         baseUrl: "https://registry.yarnpkg.com",
         url: `/${name}/-/${name}-${version}.tgz`,
         method: "GET",
-    }).catch((response: GaxiosError<unknown>) => {
-        throw Error(`Failed to download ${response.config.url}\n${response.message}`);
-    });
+    })
+        .then((response: GaxiosResponse<unknown>) => (npmjsResponse = response))
+        .catch((response: GaxiosError<unknown>) => {
+            throw Error(`Failed to download ${response.config.url}\n${response.message}`);
+        });
+
+    if (npmjsResponse?.status !== 200) {
+        throw Error(`NPMJS responded with ${npmjsResponse?.status} - ${npmjsResponse?.statusText}`);
+    }
 };
 
 export const run = async (config: Config): Promise<void> => {
