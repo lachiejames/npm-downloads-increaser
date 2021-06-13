@@ -3,6 +3,7 @@ import { cleanAll } from "nock";
 
 import { getMockConfig } from "../../test-utils/mock-config";
 import { setHttpErrorResponse, setMockResponses } from "../../test-utils/set-http-mocks";
+import { terminalSpinner } from "../cli/logger";
 import { Config } from "../models/config.model";
 
 import { downloadPackage, run } from "./spammer";
@@ -33,21 +34,17 @@ describe("spammer", () => {
     });
 
     describe("run()", () => {
-        it("logs download expected number of times", async () => {
+        it("terminalSpinner contains expected text", async () => {
             setMockResponses(config);
 
             await run(config);
-            expect(console.log).toHaveBeenCalledTimes(3);
+            expect(terminalSpinner.text).toEqual("Downloaded code-review-leaderboard 3/3");
         });
 
-        it("logs error when response is 500", async () => {
+        it("does NOT throw error when response is 500", async () => {
             setHttpErrorResponse(config);
 
-            await run(config);
-            expect(console.error).toHaveBeenCalledWith(
-                `Error: Failed to download https://registry.yarnpkg.com/code-review-leaderboard/-/code-review-leaderboard-1.2.1.tgz\n` +
-                    `Request failed with status code 500`,
-            );
+            await expect(run(config)).resolves.not.toThrowError();
         });
     });
 });
