@@ -1,4 +1,5 @@
 import { GaxiosError, request } from "gaxios";
+import { logComplete, logDownload, logError } from "../cli/logger";
 
 import { Config } from "../models/config.model";
 
@@ -23,9 +24,10 @@ export const run = async (config: Config): Promise<void> => {
             await downloadPackage(config.packageName, config.packageVersion);
             await sleep(config.timeBetweenDownloads);
 
-            console.log(`Downloaded ${config.packageName} ${i + 1}/${config.numDownloads}`);
+            logDownload(config, i + 1);
         }
+        logComplete(config);
     } catch (e) {
-        console.error(e.toString());
+        logError(e);
     }
 };
