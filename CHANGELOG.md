@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/lachiejames/npm-popularity-increaser/compare/v1.1.0...v1.2.0) (2021-06-13)
+
+
+### Features
+
+* Allow cli configuration ([6355774](https://github.com/lachiejames/npm-popularity-increaser/commit/6355774e44cb2957e489670e6f4df9c355fd0c61))
+
 # [1.1.0](https://github.com/lachiejames/npm-popularity-increaser/compare/v1.0.0...v1.1.0) (2021-06-13)
 
 
