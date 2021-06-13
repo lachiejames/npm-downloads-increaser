@@ -1,1 +1,1 @@
-# npm-download-spammer
+# npm-popularity-increaser

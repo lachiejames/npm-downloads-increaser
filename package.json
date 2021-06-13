@@ -1,5 +1,5 @@
 {
-    "name": "npm-download-spammer",
+    "name": "npm-popularity-increaser",
     "version": "0.1.0",
     "description": "Raises the popularity score on your package through nefarious means.",
     "author": "Lachie James",
@@ -48,9 +48,9 @@
         "spam",
         "spammer"
     ],
-    "repository": "https://github.com/lachiejames/npm-download-spammer.git",
-    "bugs": "https://github.com/lachiejames/npm-download-spammer/issues",
-    "homepage": "https://github.com/lachiejames/npm-download-spammer#readme",
+    "repository": "https://github.com/lachiejames/npm-popularity-increaser.git",
+    "bugs": "https://github.com/lachiejames/npm-popularity-increaser/issues",
+    "homepage": "https://github.com/lachiejames/npm-popularity-increaser#readme",
     "release": {
         "branches": [
             "main"
