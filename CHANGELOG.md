@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/lachiejames/npm-popularity-increaser/compare/v1.2.0...v1.3.0) (2021-06-14)
+
+
+### Features
+
+* Add package version inference ([b7a8601](https://github.com/lachiejames/npm-popularity-increaser/commit/b7a860101301d48c89b8384596376202a46893af))
+
 # [1.2.0](https://github.com/lachiejames/npm-popularity-increaser/compare/v1.1.0...v1.2.0) (2021-06-13)
 
 
