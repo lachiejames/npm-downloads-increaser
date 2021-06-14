@@ -1,9 +1,10 @@
 {
-    "name": "npm-download-spammer",
-    "version": "1.0.0",
+    "name": "npm-popularity-increaser",
+    "version": "1.1.0",
+    "description": "Raises the popularity score on your package through nefarious means.",
     "author": "Lachie James",
-    "license": "UNLICENSED",
-    "main": "lib/index.js",
+    "license": "MIT",
+    "main": "./lib/index.js",
     "dependencies": {
         "gaxios": "4.2.1",
         "ora": "5.4.0",
@@ -38,9 +39,22 @@
         "test": "jest --coverage --detectOpenHandles --runInBand",
         "semantic-release": "semantic-release"
     },
+    "bin": {
+        "npm-popularity-increaser": "./lib/cli.js"
+    },
     "directories": {
         "lib": "lib"
     },
+    "keywords": [
+        "npm",
+        "npmjs",
+        "popularity",
+        "increaser",
+        "spammer"
+    ],
+    "repository": "https://github.com/lachiejames/npm-popularity-increaser.git",
+    "bugs": "https://github.com/lachiejames/npm-popularity-increaser/issues",
+    "homepage": "https://github.com/lachiejames/npm-popularity-increaser#readme",
     "release": {
         "branches": [
             "main"
