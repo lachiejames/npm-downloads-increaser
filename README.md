@@ -24,11 +24,10 @@ Once you specify your configuration, this will start spamming downloads for the 
 
 ### Configuration options
 
-| Property             | Description                                      | Example    |
-| -------------------- | ------------------------------------------------ | ---------- |
-| packageName          | Package to the popularity score of               | `"lodash"` |
-| numDownloads         | Number of times to download the package          | `100000`   |
-| timeBetweenDownloads | Number of milliseconds to wait between downloads | `5000`     |
+| Property     | Description                             | Example    |
+| ------------ | --------------------------------------- | ---------- |
+| packageName  | Package to the popularity score of      | `"lodash"` |
+| numDownloads | Number of times to download the package | `100000`   |
 
 ### Demo
 

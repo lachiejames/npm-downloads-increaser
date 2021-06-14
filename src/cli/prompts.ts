@@ -31,22 +31,10 @@ export const getNumberOfDownloads = async (): Promise<number> => {
     return promptData[PROMPT_NAME];
 };
 
-export const getTimeBetweenDownloads = async (): Promise<number> => {
-    const promptData: Answers<PromptType> = await prompts({
-        name: PROMPT_NAME,
-        type: "number",
-        message: "Time between downloads (in ms): ",
-        validate: (time: number) => validateNumbers(time),
-    });
-
-    return promptData[PROMPT_NAME];
-};
-
 const getEmptyConfig = (): Config => {
     return {
         packageName: "",
         numDownloads: 0,
-        timeBetweenDownloads: 0,
     };
 };
 
@@ -55,7 +43,6 @@ export const getConfigFromCli = async (): Promise<Config> => {
 
     config.packageName = await getPackageName();
     config.numDownloads = await getNumberOfDownloads();
-    config.timeBetweenDownloads = await getTimeBetweenDownloads();
 
     return config;
 };

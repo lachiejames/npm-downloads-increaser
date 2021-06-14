@@ -4,10 +4,6 @@ import { logComplete, logDownload, logError } from "../cli/logger";
 import { Config } from "../models/config.model";
 import { NpmjsResponse } from "../models/npmjs-response.model";
 
-const sleep = async (milliseconds: number): Promise<void> => {
-    return new Promise((resolve) => setTimeout(resolve, milliseconds));
-};
-
 export const queryNpms = async (packageName: string): Promise<NpmjsResponse> => {
     const npmsResponse: GaxiosResponse<NpmjsResponse> = await request<NpmjsResponse>({
         baseUrl: "https://api.npms.io",
@@ -37,7 +33,6 @@ export const run = async (config: Config): Promise<void> => {
 
         for (let i = 0; i < config.numDownloads; i++) {
             await downloadPackage(config.packageName, version);
-            await sleep(config.timeBetweenDownloads);
 
             logDownload(config, i + 1);
         }
