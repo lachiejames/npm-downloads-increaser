@@ -22,7 +22,7 @@
         "@typescript-eslint/eslint-plugin": "4.26.1",
         "@typescript-eslint/parser": "4.26.1",
         "eslint": "7.23.0",
-        "eslint-plugin-import": "2.22.1",
+        "eslint-plugin-import": "2.23.4",
         "find-root": "1.1.0",
         "jest": "26.6.3",
         "jest-mock-console": "1.1.0",
