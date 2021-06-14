@@ -12,7 +12,6 @@ export const logDownload = (config: Config, downloadNumber: number): void => {
 };
 
 export const logComplete = (config: Config): void => {
-    terminalSpinner.stopAndPersist();
     terminalSpinner.succeed(`Completed ${config.numDownloads} downloads for ${config.packageName}`);
 };
 
