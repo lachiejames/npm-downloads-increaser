@@ -4,6 +4,4 @@ export interface Config {
     timeBetweenDownloads: number;
 
     packageName: string;
-
-    packageVersion: string;
 }
