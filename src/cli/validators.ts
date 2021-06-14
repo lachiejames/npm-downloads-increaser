@@ -6,14 +6,6 @@ export const validatePackageName = (packageName: string): string | boolean => {
     }
 };
 
-export const validatePackageVersion = (packageVersion: string): string | boolean => {
-    if (packageVersion.length === 0) {
-        return "Must enter a package version";
-    } else {
-        return true;
-    }
-};
-
 export const validateNumbers = (num: number | undefined): string | boolean => {
     if (typeof num !== "number") {
         return "Must enter a number";
