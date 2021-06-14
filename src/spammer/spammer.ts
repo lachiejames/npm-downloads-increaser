@@ -8,20 +8,16 @@ const sleep = async (milliseconds: number): Promise<void> => {
     return new Promise((resolve) => setTimeout(resolve, milliseconds));
 };
 
-export const queryNpms = async (name: string): Promise<NpmjsResponse> => {
-    let npmsResponse: GaxiosResponse<NpmjsResponse> | undefined;
-
-    await request<NpmjsResponse>({
+export const queryNpms = async (packageName: string): Promise<NpmjsResponse> => {
+    const npmsResponse: GaxiosResponse<NpmjsResponse> = await request<NpmjsResponse>({
         baseUrl: "https://api.npms.io",
-        url: `/v2/package/${name}`,
+        url: `/v2/package/${packageName}`,
         method: "GET",
-    })
-        .then((response: GaxiosResponse<NpmjsResponse>) => (npmsResponse = response))
-        .catch((response: GaxiosError<NpmjsResponse>) => {
-            throw Error(`Failed to download ${response.config.url}\n${response.message}`);
-        });
+    }).catch((response: GaxiosError<NpmjsResponse>) => {
+        throw Error(`Failed to download ${response.config.url}\n${response.message}`);
+    });
 
-    return (npmsResponse as GaxiosResponse<NpmjsResponse>).data;
+    return npmsResponse.data;
 };
 
 export const downloadPackage = async (name: string, version: string): Promise<void> => {
@@ -36,8 +32,8 @@ export const downloadPackage = async (name: string, version: string): Promise<vo
 
 export const run = async (config: Config): Promise<void> => {
     try {
-        const npmsResponse = await queryNpms(config.packageName);
-        const version = npmsResponse.collected.metadata.version;
+        const npmsResponse: NpmjsResponse = await queryNpms(config.packageName);
+        const version: string = npmsResponse.collected.metadata.version;
 
         for (let i = 0; i < config.numDownloads; i++) {
             await downloadPackage(config.packageName, version);
@@ -45,6 +41,7 @@ export const run = async (config: Config): Promise<void> => {
 
             logDownload(config, i + 1);
         }
+
         logComplete(config);
     } catch (e) {
         logError(e);
