@@ -4,11 +4,14 @@ import { Config } from "../models/config.model";
 
 export const terminalSpinner: Ora = ora();
 
-export const logDownload = (config: Config, downloadNumber: number): void => {
+export const logDownload = (config: Config, numSuccessful: number, numFailed: number): void => {
     if (!terminalSpinner.isSpinning) {
         terminalSpinner.start();
     }
-    terminalSpinner.text = `Downloaded ${config.packageName} ${downloadNumber}/${config.numDownloads}`;
+    terminalSpinner.text =
+        `Downloaded ${config.packageName} ${numSuccessful}/${config.numDownloads}\n` +
+        `Successful: ${numSuccessful}\n` +
+        `Failed: ${numFailed}`;
 };
 
 export const logComplete = (config: Config): void => {
