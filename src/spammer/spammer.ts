@@ -4,7 +4,8 @@ import { logComplete, logDownload, logError } from "../cli/logger";
 import { Config } from "../models/config.model";
 import { NpmjsResponse } from "../models/npmjs-response.model";
 
-const MAX_CONCURRENT_DOWNLOADS = 100;
+const MAX_CONCURRENT_DOWNLOADS = 400;
+let numSuccessful = 0;
 
 export const queryNpms = async (packageName: string): Promise<NpmjsResponse> => {
     const npmsResponse: GaxiosResponse<NpmjsResponse> = await request<NpmjsResponse>({
@@ -18,7 +19,7 @@ export const queryNpms = async (packageName: string): Promise<NpmjsResponse> => 
     return npmsResponse.data;
 };
 
-export const downloadPackage = async (config: Config, version: string): Promise<GaxiosResponse<unknown>> => {
+export const downloadPackage = async (config: Config, version: string): Promise<GaxiosResponse<unknown> | null> => {
     return request<unknown>({
         baseUrl: "https://registry.yarnpkg.com",
         url: `/${config.packageName}/-/${config.packageName}-${version}.tgz`,
@@ -28,20 +29,16 @@ export const downloadPackage = async (config: Config, version: string): Promise<
     })
         .then((response) => {
             numSuccessful++;
-            logDownload(config, numSuccessful, numFailed);
+            logDownload(config, numSuccessful);
             return response;
         })
         .catch((e) => {
-            numFailed++;
-            return Promise.resolve({}) as unknown as GaxiosResponse<unknown>;
+            return null;
         });
 };
 
-let numSuccessful = 0;
-let numFailed = 0;
-
 const spamDownloads = async (config: Config, version: string): Promise<void> => {
-    const requests: Promise<GaxiosResponse<unknown>>[] = [];
+    const requests: Promise<GaxiosResponse<unknown> | null>[] = [];
 
     for (let i = 0; i < MAX_CONCURRENT_DOWNLOADS; i++) {
         requests.push(downloadPackage(config, version));
