@@ -3,7 +3,6 @@ import { cleanAll } from "nock";
 
 import { getMockConfig } from "../../test-utils/mock-config";
 import { MOCK_PACKAGE_VERSION, setMockErrorResponses, setMockResponses } from "../../test-utils/set-http-mocks";
-import { terminalSpinner } from "../cli/logger";
 import { Config } from "../models/config.model";
 
 import { downloadPackage, queryNpms, run } from "./spammer";

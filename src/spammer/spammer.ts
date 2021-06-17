@@ -32,7 +32,7 @@ export const downloadPackage = async (config: Config, version: string): Promise<
             logDownload(config, numSuccessful);
             return response;
         })
-        .catch((e) => {
+        .catch((_) => {
             return null;
         });
 };
