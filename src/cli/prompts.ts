@@ -31,6 +31,30 @@ export const getNumberOfDownloads = async (): Promise<number> => {
     return promptData[PROMPT_NAME];
 };
 
+export const getMaxConcurrentDownloads = async (): Promise<number> => {
+    const promptData: Answers<PromptType> = await prompts({
+        name: PROMPT_NAME,
+        type: "number",
+        message: "Number of concurrent downloads: ",
+        initial: 400,
+        validate: (downloads: number) => validateNumbers(downloads),
+    });
+
+    return promptData[PROMPT_NAME];
+};
+
+export const getDownloadTimeout = async (): Promise<number> => {
+    const promptData: Answers<PromptType> = await prompts({
+        name: PROMPT_NAME,
+        type: "number",
+        message: "Time to wait for a download to complete (in ms): ",
+        initial: 3000,
+        validate: (downloads: number) => validateNumbers(downloads),
+    });
+
+    return promptData[PROMPT_NAME];
+};
+
 const getEmptyConfig = (): Config => {
     return {
         packageName: "",
@@ -45,6 +69,8 @@ export const getConfigFromCli = async (): Promise<Config> => {
 
     config.packageName = await getPackageName();
     config.numDownloads = await getNumberOfDownloads();
+    config.maxConcurrentDownloads = await getMaxConcurrentDownloads();
+    config.downloadTimeout = await getDownloadTimeout();
 
     return config;
 };

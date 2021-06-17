@@ -4,7 +4,7 @@ export const getMockConfig = (): Config => {
     return {
         packageName: "code-review-leaderboard",
         numDownloads: 3,
-        maxConcurrentDownloads: 400,
-        downloadTimeout: 3000,
+        maxConcurrentDownloads: 5,
+        downloadTimeout: 10,
     };
 };
