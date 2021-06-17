@@ -1,6 +1,6 @@
 import prompts from "prompts";
 
-import { getConfigFromCli, getNumberOfDownloads, getPackageName, getTimeBetweenDownloads } from "./prompts";
+import { getConfigFromCli, getNumberOfDownloads, getPackageName } from "./prompts";
 
 describe("cli prompts", () => {
     it("getPackageName() returns the provided package name", async () => {
@@ -13,11 +13,6 @@ describe("cli prompts", () => {
         expect(await getNumberOfDownloads()).toEqual(1000);
     });
 
-    it("getTimeBetweenDownloads() returns the provided package name", async () => {
-        prompts.inject([5000]);
-        expect(await getTimeBetweenDownloads()).toEqual(5000);
-    });
-
     it("returns a config based on the provided values", async () => {
         prompts.inject(["code-review-leaderboard", 1000, 5000]);
 
@@ -25,7 +20,6 @@ describe("cli prompts", () => {
         expect(config).toEqual({
             packageName: "code-review-leaderboard",
             numDownloads: 1000,
-            timeBetweenDownloads: 5000,
         });
     });
 });

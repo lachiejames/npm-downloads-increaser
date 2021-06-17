@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/lachiejames/npm-popularity-increaser/compare/v1.3.0...v1.4.0) (2021-06-14)
+
+
+### Features
+
+* Remove timeBetweenDownloads option ([#16](https://github.com/lachiejames/npm-popularity-increaser/issues/16)) ([17ee2eb](https://github.com/lachiejames/npm-popularity-increaser/commit/17ee2eb3b26b8f43dce1461100665f0711c3fd68))
+
 # [1.3.0](https://github.com/lachiejames/npm-popularity-increaser/compare/v1.2.0...v1.3.0) (2021-06-14)
 
 
