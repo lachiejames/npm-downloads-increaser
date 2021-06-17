@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/lachiejames/npm-popularity-increaser/compare/v1.4.0...v1.5.0) (2021-06-17)
+
+
+### Features
+
+* Make downloads asynchronous ([#19](https://github.com/lachiejames/npm-popularity-increaser/issues/19)) ([c2124dc](https://github.com/lachiejames/npm-popularity-increaser/commit/c2124dcd29da39ff229b7759ae47a5b64b6939a1))
+
 # [1.4.0](https://github.com/lachiejames/npm-popularity-increaser/compare/v1.3.0...v1.4.0) (2021-06-14)
 
 
