@@ -4,7 +4,6 @@ import { logComplete, logDownload, logError } from "../cli/logger";
 import { Config } from "../models/config.model";
 import { NpmjsResponse } from "../models/npmjs-response.model";
 
-const MAX_CONCURRENT_DOWNLOADS = 400;
 let numSuccessful = 0;
 
 export const queryNpms = async (packageName: string): Promise<NpmjsResponse> => {
@@ -24,7 +23,7 @@ export const downloadPackage = async (config: Config, version: string): Promise<
         baseUrl: "https://registry.yarnpkg.com",
         url: `/${config.packageName}/-/${config.packageName}-${version}.tgz`,
         method: "GET",
-        timeout: 3000,
+        timeout: config.downloadTimeout,
         responseType: "stream",
     })
         .then((response) => {
@@ -40,7 +39,7 @@ export const downloadPackage = async (config: Config, version: string): Promise<
 const spamDownloads = async (config: Config, version: string): Promise<void> => {
     const requests: Promise<GaxiosResponse<unknown> | null>[] = [];
 
-    for (let i = 0; i < MAX_CONCURRENT_DOWNLOADS; i++) {
+    for (let i = 0; i < config.maxConcurrentDownloads; i++) {
         requests.push(downloadPackage(config, version));
     }
 
