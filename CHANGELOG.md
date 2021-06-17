@@ -3,16 +3,16 @@
 
 ### Performance Improvements
 
-* Rename from `npm-popularity-increaser` to `npm-downloads-increaser` ([#22](https://github.com/lachiejames/npm-downloads-increaser/issues/22)) ([6dbb786](https://github.com/lachiejames/npm-downloads-increaser/commit/6dbb78609c56a9896d077f95fde14646e14d85da))
+* Rename from `npm-downloads-increaser` to `npm-downloads-increaser` ([#22](https://github.com/lachiejames/npm-downloads-increaser/issues/22)) ([6dbb786](https://github.com/lachiejames/npm-downloads-increaser/commit/6dbb78609c56a9896d077f95fde14646e14d85da))
 
-# [1.6.0](https://github.com/lachiejames/npm-popularity-increaser/compare/v1.5.0...v1.6.0) (2021-06-17)
+# [1.6.0](https://github.com/lachiejames/npm-downloads-increaser/compare/v1.5.0...v1.6.0) (2021-06-17)
 
 
 ### Features
 
-* Make http configurable ([#21](https://github.com/lachiejames/npm-popularity-increaser/issues/21)) ([7e3c105](https://github.com/lachiejames/npm-popularity-increaser/commit/7e3c1052180c16b744ca97a9d65582479fa896b5))
+* Make http configurable ([#21](https://github.com/lachiejames/npm-downloads-increaser/issues/21)) ([7e3c105](https://github.com/lachiejames/npm-downloads-increaser/commit/7e3c1052180c16b744ca97a9d65582479fa896b5))
 
-# [1.5.0](https://github.com/lachiejames/npm-popularity-increaser/compare/v1.4.0...v1.5.0) (2021-06-17)
+# [1.5.0](https://github.com/lachiejames/npm-downloads-increaser/compare/v1.4.0...v1.5.0) (2021-06-17)
 
 
 ### Features
