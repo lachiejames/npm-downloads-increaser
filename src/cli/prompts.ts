@@ -35,6 +35,8 @@ const getEmptyConfig = (): Config => {
     return {
         packageName: "",
         numDownloads: 0,
+        maxConcurrentDownloads: 0,
+        downloadTimeout: 0,
     };
 };
 

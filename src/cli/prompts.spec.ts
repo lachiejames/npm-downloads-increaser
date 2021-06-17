@@ -14,12 +14,14 @@ describe("cli prompts", () => {
     });
 
     it("returns a config based on the provided values", async () => {
-        prompts.inject(["code-review-leaderboard", 1000, 5000]);
+        prompts.inject(["code-review-leaderboard", 1000]);
 
         const config = await getConfigFromCli();
         expect(config).toEqual({
             packageName: "code-review-leaderboard",
             numDownloads: 1000,
+            maxConcurrentDownloads: 0,
+            downloadTimeout: 0,
         });
     });
 });
