@@ -1,15 +1,15 @@
-# npm-popularity-increaser
+# npm-downloads-increaser
 
-[![Build Status](https://dev.azure.com/lachiejames/npm-popularity-increaser/_apis/build/status/lachiejames.npm-popularity-increaser?branchName=main)](https://dev.azure.com/lachiejames/npm-popularity-increaser/_build/latest?definitionId=14&branchName=main) [![codecov](https://codecov.io/gh/lachiejames/npm-popularity-increaser/branch/main/graph/badge.svg?token=DDEENGQ89Y)](https://codecov.io/gh/lachiejames/npm-popularity-increaser) [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+[![Build Status](https://dev.azure.com/lachiejames/npm-downloads-increaser/_apis/build/status/lachiejames.npm-downloads-increaser?branchName=main)](https://dev.azure.com/lachiejames/npm-downloads-increaser/_build/latest?definitionId=14&branchName=main) [![codecov](https://codecov.io/gh/lachiejames/npm-downloads-increaser/branch/main/graph/badge.svg?token=DDEENGQ89Y)](https://codecov.io/gh/lachiejames/npm-downloads-increaser) [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
 ## Running from the command line
 
 ### Installing
 
-Install `npm-popularity-increaser` globally using npm:
+Install `npm-downloads-increaser` globally using npm:
 
 ```
-npm install -g npm-popularity-increaser
+npm install -g npm-downloads-increaser
 ```
 
 ### Running
@@ -17,7 +17,7 @@ npm install -g npm-popularity-increaser
 Setup configuration and run:
 
 ```
-npm-popularity-increaser
+npm-downloads-increaser
 ```
 
 Once you specify your configuration, this will start spamming downloads for the provided package in the npmjs registry. This will increase the popularity score of the npm package.
@@ -40,7 +40,7 @@ Once you specify your configuration, this will start spamming downloads for the 
 Install the project using:
 
 ```
-git clone https://github.com/lachiejames/npm-popularity-increaser.git
+git clone https://github.com/lachiejames/npm-downloads-increaser.git
 ```
 
 ### Running locally

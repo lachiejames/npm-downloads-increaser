@@ -1,5 +1,5 @@
 {
-    "name": "npm-popularity-increaser",
+    "name": "npm-downloads-increaser",
     "version": "1.0.0",
     "description": "Raises the popularity score on your package through nefarious means.",
     "author": "Lachie James",
@@ -40,7 +40,7 @@
         "semantic-release": "semantic-release"
     },
     "bin": {
-        "npm-popularity-increaser": "./lib/cli.js"
+        "npm-downloads-increaser": "./lib/cli.js"
     },
     "directories": {
         "lib": "lib"
@@ -55,9 +55,9 @@
         "increaser",
         "spammer"
     ],
-    "repository": "https://github.com/lachiejames/npm-popularity-increaser.git",
-    "bugs": "https://github.com/lachiejames/npm-popularity-increaser/issues",
-    "homepage": "https://github.com/lachiejames/npm-popularity-increaser#readme",
+    "repository": "https://github.com/lachiejames/npm-downloads-increaser.git",
+    "bugs": "https://github.com/lachiejames/npm-downloads-increaser/issues",
+    "homepage": "https://github.com/lachiejames/npm-downloads-increaser#readme",
     "release": {
         "branches": [
             "main"
