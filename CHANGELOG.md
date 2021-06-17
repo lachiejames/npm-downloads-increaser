@@ -1,3 +1,10 @@
+## [1.6.2](https://github.com/lachiejames/npm-downloads-increaser/compare/v1.6.1...v1.6.2) (2021-06-17)
+
+
+### Bug Fixes
+
+* Update repo name in changelog ([158b888](https://github.com/lachiejames/npm-downloads-increaser/commit/158b8883e17b73cca724e26e1af9c801971dd3d6))
+
 ## [1.6.1](https://github.com/lachiejames/npm-downloads-increaser/compare/v1.6.0...v1.6.1) (2021-06-17)
 
 
