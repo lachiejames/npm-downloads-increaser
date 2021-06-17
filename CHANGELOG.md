@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/lachiejames/npm-downloads-increaser/compare/v1.6.0...v1.6.1) (2021-06-17)
+
+
+### Performance Improvements
+
+* Rename from `npm-popularity-increaser` to `npm-downloads-increaser` ([#22](https://github.com/lachiejames/npm-downloads-increaser/issues/22)) ([6dbb786](https://github.com/lachiejames/npm-downloads-increaser/commit/6dbb78609c56a9896d077f95fde14646e14d85da))
+
 # [1.6.0](https://github.com/lachiejames/npm-popularity-increaser/compare/v1.5.0...v1.6.0) (2021-06-17)
 
 
