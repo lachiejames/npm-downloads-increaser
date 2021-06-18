@@ -38,7 +38,7 @@ export const getMaxConcurrentDownloads = async (): Promise<number> => {
         name: PROMPT_NAME,
         type: "number",
         message: "Number of concurrent downloads: ",
-        initial: 400,
+        initial: 300,
         validate: (downloads: number) => validateNumbers(downloads),
     });
 

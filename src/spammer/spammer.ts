@@ -53,10 +53,8 @@ export const run = async (config: Config): Promise<void> => {
     try {
         const npmsResponse: NpmjsResponse = await queryNpms(config.packageName);
         const version: string = npmsResponse.collected.metadata.version;
-        const dateLastAnalyzed: number = Date.parse(npmsResponse.analyzedAt);
-        const weeklyDownloads: number = npmsResponse.evaluation.popularity.downloadsCount;
         const startTime = Date.now();
-        const stats: Stats = new Stats(config, startTime, dateLastAnalyzed, weeklyDownloads);
+        const stats: Stats = new Stats(config, startTime);
 
         setInterval(() => logDownload(stats), 1000);
 

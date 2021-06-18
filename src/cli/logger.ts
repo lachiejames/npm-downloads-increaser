@@ -6,28 +6,32 @@ import { Stats } from "../models/stats.model";
 
 export const terminalSpinner: Ora = ora();
 
+const mapToString = (num: number): string => {
+    if (Number.isInteger(num)) {
+        return num.toString();
+    } else {
+        return num.toFixed(2);
+    }
+};
+
+const mapToDate = (num: number | null): string => {
+    if (num === null || num <= 0) {
+        return "--:--:--";
+    } else {
+        return format(new Date(num), "hh:mm:ss");
+    }
+};
+
 export const logDownload = (stats: Stats): void => {
     if (!terminalSpinner.isSpinning) {
         terminalSpinner.start();
     }
 
-    const successfulDownloads: string = stats.successfulDownloads.toString();
-    const downloadSpeed: string = stats.getDownloadSpeed().toFixed(2);
-    const downloadSuccessRate: string = stats.getDownloadSuccessRate().toFixed(2);
-    const timeRemaining: string = format(new Date(stats.getTimeRemaining()), "hh:mm:ss");
-    const currentNpmDownloads: string = stats.previousPackageDownloads.toFixed(2);
-    const expectedNpmDownloads: string = stats.getExpectedDownloads().toFixed(2);
-    const timeUntilNextNpmsRefresh: string = format(new Date(stats.getTimeUntilNextNpmsRefresh()), "hh:mm:ss");
-
     terminalSpinner.text = `\n`;
-    terminalSpinner.text += `Downloads:                          ${successfulDownloads}\n`;
-    terminalSpinner.text += `Speed:                              ${downloadSpeed} dl/s\n`;
-    terminalSpinner.text += `Success rate:                       ${downloadSuccessRate}%\n`;
-    terminalSpinner.text += `Estimated time remaining:           ${timeRemaining}\n`;
-    terminalSpinner.text += `\n`;
-    terminalSpinner.text += `NPMJS current weekly downloads:     ${currentNpmDownloads}\n`
-    terminalSpinner.text += `NPMJS projected weekly downloads:   ${expectedNpmDownloads}\n`
-    terminalSpinner.text += `NPMJS time until refresh:           ${timeUntilNextNpmsRefresh}\n`;
+    terminalSpinner.text += `Downloads:                 ${mapToString(stats.successfulDownloads)}\n`;
+    terminalSpinner.text += `Speed:                     ${mapToString(stats.getDownloadSpeed())} dl/s\n`;
+    terminalSpinner.text += `Success rate:              ${mapToString(stats.getDownloadSuccessRate())}%\n`;
+    terminalSpinner.text += `Estimated time remaining:  ${mapToDate(stats.getTimeRemaining())}\n`;
 };
 
 export const logComplete = (config: Config): void => {
