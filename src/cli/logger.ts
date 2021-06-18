@@ -15,13 +15,19 @@ export const logDownload = (stats: Stats): void => {
     const downloadSpeed: string = stats.getDownloadSpeed().toFixed(2);
     const downloadSuccessRate: string = stats.getDownloadSuccessRate().toFixed(2);
     const timeRemaining: string = format(new Date(stats.getTimeRemaining()), "hh:mm:ss");
+    const currentNpmDownloads: string = stats.previousPackageDownloads.toFixed(2);
+    const expectedNpmDownloads: string = stats.getExpectedDownloads().toFixed(2);
     const timeUntilNextNpmsRefresh: string = format(new Date(stats.getTimeUntilNextNpmsRefresh()), "hh:mm:ss");
 
-    terminalSpinner.text = `Downloads: ${successfulDownloads}\n`;
-    terminalSpinner.text += `Speed: ${downloadSpeed} dl/s\n`;
-    terminalSpinner.text += `Download success rate: ${downloadSuccessRate}%\n`;
-    terminalSpinner.text += `Time remaining: ${timeRemaining}\n`;
-    terminalSpinner.text += `Time until npmjs downloads refresh: ${timeUntilNextNpmsRefresh}\n`;
+    terminalSpinner.text = `\n`;
+    terminalSpinner.text += `Downloads:                          ${successfulDownloads}\n`;
+    terminalSpinner.text += `Speed:                              ${downloadSpeed} dl/s\n`;
+    terminalSpinner.text += `Success rate:                       ${downloadSuccessRate}%\n`;
+    terminalSpinner.text += `Estimated time remaining:           ${timeRemaining}\n`;
+    terminalSpinner.text += `\n`;
+    terminalSpinner.text += `NPMJS current weekly downloads:     ${currentNpmDownloads}\n`
+    terminalSpinner.text += `NPMJS projected weekly downloads:   ${expectedNpmDownloads}\n`
+    terminalSpinner.text += `NPMJS time until refresh:           ${timeUntilNextNpmsRefresh}\n`;
 };
 
 export const logComplete = (config: Config): void => {

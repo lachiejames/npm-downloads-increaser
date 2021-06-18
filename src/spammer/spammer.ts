@@ -27,7 +27,6 @@ export const downloadPackage = async (config: Config, version: string, stats: St
     })
         .then((response) => {
             stats.successfulDownloads++;
-            logDownload(stats);
             return response;
         })
         .catch((_) => {
@@ -55,8 +54,11 @@ export const run = async (config: Config): Promise<void> => {
         const npmsResponse: NpmjsResponse = await queryNpms(config.packageName);
         const version: string = npmsResponse.collected.metadata.version;
         const dateLastAnalyzed: number = Date.parse(npmsResponse.analyzedAt);
+        const weeklyDownloads: number = npmsResponse.evaluation.popularity.downloadsCount;
         const startTime = Date.now();
-        const stats: Stats = new Stats(config, startTime, dateLastAnalyzed);
+        const stats: Stats = new Stats(config, startTime, dateLastAnalyzed, weeklyDownloads);
+
+        setInterval(() => logDownload(stats), 1000);
 
         await spamDownloads(config, version, stats);
 

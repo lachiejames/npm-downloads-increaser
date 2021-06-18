@@ -1,24 +1,30 @@
+import { addDays } from "date-fns";
+
 import { Config } from "./config.model";
 
 export class Stats {
-    public startTime = 0;
-
     public successfulDownloads = 0;
 
     public failedDownloads = 0;
 
-    public previousPackageDownloads = 0;
+    public previousPackageDownloads: number;
 
-    public expectedPackageDownloads = 0;
+    private startTime: number;
 
-    public dateLastAnalyzed = 0;
+    private dateLastAnalyzed: number;
 
     private config: Config;
 
-    public constructor(config: Config, startTime: number, dateLastAnalyzed: number) {
+    public constructor(
+        config: Config,
+        startTime: number,
+        dateLastAnalyzed: number,
+        previousPackageDownloads: number,
+    ) {
         this.config = config;
         this.startTime = startTime;
         this.dateLastAnalyzed = dateLastAnalyzed;
+        this.previousPackageDownloads = previousPackageDownloads;
     }
 
     public getDownloadSpeed(): number {
@@ -43,7 +49,13 @@ export class Stats {
     }
 
     public getTimeUntilNextNpmsRefresh(): number {
-        const currentTime = Date.now();
-        return currentTime - this.dateLastAnalyzed;
+        const currentTime: number = Date.now();
+        const nextRefresh: number = addDays(this.dateLastAnalyzed, 1).getTime();
+        const timeUntilRefresh: number = nextRefresh - currentTime;
+        return timeUntilRefresh;
+    }
+
+    public getExpectedDownloads(): number {
+        return this.previousPackageDownloads + this.config.numDownloads;
     }
 }
