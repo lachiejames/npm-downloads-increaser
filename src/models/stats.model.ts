@@ -11,13 +11,14 @@ export class Stats {
 
     public expectedPackageDownloads = 0;
 
-    public timeUntilNpmjsRefresh = 0;
+    public dateLastAnalyzed = 0;
 
     private config: Config;
 
-    public constructor(config: Config) {
+    public constructor(config: Config, startTime: number, dateLastAnalyzed: number) {
         this.config = config;
-        this.startTime = Date.now();
+        this.startTime = startTime;
+        this.dateLastAnalyzed = dateLastAnalyzed;
     }
 
     public getDownloadSpeed(): number {
@@ -39,5 +40,10 @@ export class Stats {
         const downloadsRemaining: number = this.config.numDownloads - this.successfulDownloads;
         const timeRemaining: number = downloadsRemaining / this.getDownloadSpeed();
         return timeRemaining;
+    }
+
+    public getTimeUntilNextNpmsRefresh(): number {
+        const currentTime = Date.now();
+        return currentTime - this.dateLastAnalyzed;
     }
 }

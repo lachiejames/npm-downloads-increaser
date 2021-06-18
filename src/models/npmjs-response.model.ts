@@ -24,7 +24,7 @@ interface NpmjsScore {
 }
 
 export interface NpmjsResponse {
-    analyzedAt: Date;
+    analyzedAt: string;
     collected: NpmjsCollected;
     evaluation: NpmjsEvaluation;
     score: NpmjsScore;

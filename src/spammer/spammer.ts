@@ -1,6 +1,5 @@
 import { GaxiosError, GaxiosResponse, request } from "gaxios";
 
-
 import { logComplete, logDownload, logError } from "../cli/logger";
 import { Config } from "../models/config.model";
 import { NpmjsResponse } from "../models/npmjs-response.model";
@@ -55,7 +54,9 @@ export const run = async (config: Config): Promise<void> => {
     try {
         const npmsResponse: NpmjsResponse = await queryNpms(config.packageName);
         const version: string = npmsResponse.collected.metadata.version;
-        const stats: Stats = new Stats(config);
+        const dateLastAnalyzed: number = Date.parse(npmsResponse.analyzedAt);
+        const startTime = Date.now();
+        const stats: Stats = new Stats(config, startTime, dateLastAnalyzed);
 
         await spamDownloads(config, version, stats);
 

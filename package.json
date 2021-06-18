@@ -6,6 +6,7 @@
     "license": "MIT",
     "main": "./lib/index.js",
     "dependencies": {
+        "date-fns": "^2.22.1",
         "gaxios": "4.3.0",
         "ora": "5.4.1",
         "prompts": "2.4.1"
