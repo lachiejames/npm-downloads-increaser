@@ -7,7 +7,7 @@ export const validatePackageName = (packageName: string): string | boolean => {
 };
 
 export const validateNumbers = (num: number | undefined): string | boolean => {
-    if (num && num <= 0) {
+    if (typeof num === "number" && num <= 0) {
         return "Must be greater than 0";
     } else {
         return true;

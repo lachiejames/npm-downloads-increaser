@@ -24,8 +24,8 @@ describe("cli validators", () => {
             expect(validateNumbers(-3)).toEqual("Must be greater than 0");
         });
 
-        it("if no number is entered, returns error message", () => {
-            expect(validateNumbers(undefined)).toEqual("Must enter a number");
+        it("if no number is entered, returns true since it it will use the initialNumber", () => {
+            expect(validateNumbers(undefined)).toEqual(true);
         });
     });
 });
