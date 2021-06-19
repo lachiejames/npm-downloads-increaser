@@ -17,7 +17,7 @@ export const queryNpms = async (packageName: string): Promise<NpmjsResponse> => 
     return npmsResponse.data;
 };
 
-export const downloadPackage = async (config: Config, version: string, stats: Stats): Promise<GaxiosResponse<unknown> | null> => {
+export const downloadPackage = async (config: Config, version: string, stats: Stats): Promise<unknown> => {
     return request<unknown>({
         baseUrl: "https://registry.yarnpkg.com",
         url: `/${config.packageName}/-/${config.packageName}-${version}.tgz`,
@@ -25,18 +25,16 @@ export const downloadPackage = async (config: Config, version: string, stats: St
         timeout: config.downloadTimeout,
         responseType: "stream",
     })
-        .then((response) => {
+        .then((_) => {
             stats.successfulDownloads++;
-            return response;
         })
         .catch((_) => {
             stats.failedDownloads++;
-            return null;
         });
 };
 
 const spamDownloads = async (config: Config, version: string, stats: Stats): Promise<void> => {
-    const requests: Promise<GaxiosResponse<unknown> | null>[] = [];
+    const requests: Promise<unknown>[] = [];
 
     for (let i = 0; i < config.maxConcurrentDownloads; i++) {
         requests.push(downloadPackage(config, version, stats));
@@ -56,10 +54,10 @@ export const run = async (config: Config): Promise<void> => {
         const startTime = Date.now();
         const stats: Stats = new Stats(config, startTime);
 
-        setInterval(() => logDownload(stats), 1000);
-
+        const loggingInterval: NodeJS.Timeout = setInterval(() => logDownload(stats), 1000);
         await spamDownloads(config, version, stats);
 
+        clearInterval(loggingInterval);
         logComplete(config);
     } catch (e) {
         logError(e);
