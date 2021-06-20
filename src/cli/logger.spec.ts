@@ -3,6 +3,11 @@ import { getMockStats } from "../../test-utils/mock-stats";
 import { logDownload, mapToDate, mapToString, terminalSpinner } from "./logger";
 
 describe("logger", () => {
+    afterEach(() => {
+        // Prevents tests from hanging due
+        terminalSpinner.stop();
+    });
+
     describe("mapToString()", () => {
         it("if num is 100, returns '100'", () => {
             expect(mapToString(100)).toEqual("100");
@@ -48,10 +53,10 @@ describe("logger", () => {
     });
 
     describe("logDownload()", () => {
-        it.skip("starts the terminal spinner", () => {
+        it("starts the terminal spinner", () => {
             expect(terminalSpinner.isSpinning).toEqual(false);
             logDownload(getMockStats());
-            expect(terminalSpinner.isSpinning).toEqual(true);
+            setTimeout(() => expect(terminalSpinner.isSpinning).toEqual(true));
         });
 
         it("if stats={}, logs ''", () => {
