@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/lachiejames/npm-downloads-increaser/compare/v1.6.2...v1.7.0) (2021-06-20)
+
+
+### Features
+
+* Make config available globally ([#26](https://github.com/lachiejames/npm-downloads-increaser/issues/26)) ([48b03d8](https://github.com/lachiejames/npm-downloads-increaser/commit/48b03d8707ca0ec908670277c67456c7ab37080f))
+
 ## [1.6.2](https://github.com/lachiejames/npm-downloads-increaser/compare/v1.6.1...v1.6.2) (2021-06-17)
 
 
