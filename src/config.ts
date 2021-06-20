@@ -1,5 +1,3 @@
-import { merge } from "lodash";
-
 import defaultConfig from "../npm-downloads-increaser.config";
 
 import { Config } from "./models/config.model";
@@ -12,9 +10,4 @@ export const getConfig = (): Config => {
 
 export const setConfig = (newConfig: Config): void => {
     selectedConfig = newConfig;
-};
-
-export const overrideConfig = (newConfig: Partial<Config>): void => {
-    const overiddenConfig: Config = merge(getConfig(), newConfig);
-    setConfig(overiddenConfig);
 };

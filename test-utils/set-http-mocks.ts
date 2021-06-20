@@ -20,7 +20,9 @@ const setMockNpmsResponse = (): void => {
 };
 
 const setMockDownloadResponse = (): void => {
-    nock("https://registry.yarnpkg.com").get(`/${getConfig().packageName}/-/${getConfig().packageName}-${MOCK_PACKAGE_VERSION}.tgz`).reply(200, {});
+    nock("https://registry.yarnpkg.com")
+        .get(`/${getConfig().packageName}/-/${getConfig().packageName}-${MOCK_PACKAGE_VERSION}.tgz`)
+        .reply(200, {});
 };
 
 const setMockNpmsErrorResponse = (): void => {
