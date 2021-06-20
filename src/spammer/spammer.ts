@@ -34,7 +34,7 @@ export const downloadPackage = async (version: string, stats: Stats): Promise<un
         });
 };
 
-const spamDownloads = async ( version: string, stats: Stats): Promise<void> => {
+const spamDownloads = async (version: string, stats: Stats): Promise<void> => {
     const requests: Promise<unknown>[] = [];
 
     for (let i = 0; i < getConfig().maxConcurrentDownloads; i++) {

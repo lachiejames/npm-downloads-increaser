@@ -7,7 +7,6 @@ export class Stats {
 
     private startTime: number;
 
-
     public constructor(startTime: number, successfulDownloads?: number, failedDownloads?: number) {
         this.startTime = startTime;
         this.successfulDownloads = successfulDownloads ?? this.successfulDownloads;

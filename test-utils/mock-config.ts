@@ -10,3 +10,5 @@ export const setMockConfig = (): void => {
     };
     setConfig(mockConfig);
 };
+
+export const MOCK_START_TIME: number = new Date(2020, 1, 1).getTime();
