@@ -19,7 +19,7 @@ export const mapToDate = (num: number | null): string => {
         return "--:--:--";
     } else {
         // For some reason Date(num) adds +10 hours onto my date in this format, so this is a workaround
-        return format(new Date(0, 0, 0, 0, 0, 0, num), "HH:mm:ss");
+        return format(new Date(0, 0, 0, 0, 0, num), "HH:mm:ss");
     }
 };
 
@@ -29,8 +29,8 @@ export const logDownload = (stats: Stats): void => {
     }
 
     terminalSpinner.text = `\n`;
-    terminalSpinner.text += `Downloads:                 ${mapToString(stats.successfulDownloads)}\n`;
-    terminalSpinner.text += `Speed:                     ${mapToString(stats.getDownloadSpeed())} dl/s\n`;
+    terminalSpinner.text += `Download count:            ${mapToString(stats.successfulDownloads)}/${stats.config.numDownloads}\n`;
+    terminalSpinner.text += `Download speed:            ${mapToString(stats.getDownloadSpeed())} dl/s\n`;
     terminalSpinner.text += `Estimated time remaining:  ${mapToDate(stats.getTimeRemaining())}\n`;
 };
 

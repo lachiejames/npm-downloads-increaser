@@ -12,3 +12,7 @@ export const getMockStats = (): Stats => {
 
     return stats;
 };
+
+export const setCurrentDate = (date: Date): void => {
+    Date.now = () => date.getTime();
+};

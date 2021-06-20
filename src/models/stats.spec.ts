@@ -1,16 +1,13 @@
 import { addMilliseconds, addSeconds } from "date-fns";
 
 import { getMockConfig } from "../../test-utils/mock-config";
+import { setCurrentDate } from "../../test-utils/mock-stats";
 
 import { Config } from "./config.model";
 import { Stats } from "./stats.model";
 
 describe("stats", () => {
     const startTime: number = new Date(2020, 1, 1, 0, 0, 0).getTime();
-
-    const setCurrentDate = (date: Date): void => {
-        Date.now = () => date.getTime();
-    };
 
     describe("getDownloadSpeed()", () => {
         it("if successfulDownloads=1, and timeElapsed=1s, returns 1 dl/s", () => {
@@ -56,12 +53,28 @@ describe("stats", () => {
         it("if numDownloads=100, speed=1dl/s and timeElapsed=1s, returns 99s", () => {
             setCurrentDate(addSeconds(startTime, 1));
 
-            const successfulDownloads = 1;
-            const failedDownloads = 0;
-            const stats = new Stats(configWith100Downloads, startTime, successfulDownloads, failedDownloads);
+            const stats = new Stats(configWith100Downloads, startTime, 1, 0);
 
             expect(stats.getDownloadSpeed()).toEqual(1);
             expect(stats.getTimeRemaining()).toEqual(99);
+        });
+
+        it("if numDownloads=100, speed=0dl/s and timeElapsed=50s, returns null", () => {
+            setCurrentDate(addSeconds(startTime, 50));
+
+            const stats = new Stats(configWith100Downloads, startTime, 0, 0);
+
+            expect(stats.getDownloadSpeed()).toEqual(0);
+            expect(stats.getTimeRemaining()).toEqual(null);
+        });
+
+        it("if numDownloads=100, speed=0dl/s and timeElapsed=0, returns null", () => {
+            setCurrentDate(addSeconds(startTime, 0));
+
+            const stats = new Stats(configWith100Downloads, startTime, 0, 0);
+
+            expect(stats.getDownloadSpeed()).toEqual(0);
+            expect(stats.getTimeRemaining()).toEqual(null);
         });
     });
 });

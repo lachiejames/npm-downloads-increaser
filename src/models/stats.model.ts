@@ -7,7 +7,7 @@ export class Stats {
 
     private startTime: number;
 
-    private config: Config;
+    public config: Config;
 
     public constructor(config: Config, startTime: number, successfulDownloads?: number, failedDownloads?: number) {
         this.config = config;
@@ -31,12 +31,12 @@ export class Stats {
 
     public getTimeRemaining(): number | null {
         const downloadsRemaining: number = this.config.numDownloads - this.successfulDownloads;
-        const downloadsPerSecond: number = this.getDownloadSpeed() ?? 0;
-        const secondsRemaining = downloadsRemaining / downloadsPerSecond;
+        const downloadsPerSecond = this.getDownloadSpeed();
 
-        if (secondsRemaining <= 0) {
+        if (downloadsPerSecond <= 0) {
             return null;
         } else {
+            const secondsRemaining = downloadsRemaining / downloadsPerSecond;
             return secondsRemaining;
         }
     }
