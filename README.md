@@ -24,10 +24,14 @@ Once you specify your configuration, this will start spamming downloads for the 
 
 ### Configuration options
 
-| Property     | Description                             | Example    |
-| ------------ | --------------------------------------- | ---------- |
-| packageName  | Package to the popularity score of      | `"lodash"` |
-| numDownloads | Number of times to download the package | `100000`   |
+| Property               | Description                                             | Example                     |
+| ---------------------- | ------------------------------------------------------- | --------------------------- |
+| packageName            | NPM package to increase the downloads of                | `"npm-downloads-increaser"` |
+| numDownloads           | Number of times to download the package                 | `100000`                    |
+| maxConcurrentDownloads | Amount of downloads to run in parallel at once          | `300`                       |
+| downloadTimeout        | Max time (in ms) to wait for for a download to complete | `3000`                      |
+
+**NOTE: slower** networks may perform better with a **lower** `maxConcurrentDownloads` and a **higher** `downloadTimeout`
 
 ### Demo
 
@@ -42,6 +46,10 @@ Install the project using:
 ```
 git clone https://github.com/lachiejames/npm-downloads-increaser.git
 ```
+
+### Setting up your configuration
+
+Open `npm-downloads-increaser.config.js` from the root directory, and populate the configuration options as shown in the table above.
 
 ### Running locally
 
