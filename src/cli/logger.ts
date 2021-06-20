@@ -31,7 +31,6 @@ export const logDownload = (stats: Stats): void => {
     terminalSpinner.text = `\n`;
     terminalSpinner.text += `Downloads:                 ${mapToString(stats.successfulDownloads)}\n`;
     terminalSpinner.text += `Speed:                     ${mapToString(stats.getDownloadSpeed())} dl/s\n`;
-    terminalSpinner.text += `Success rate:              ${mapToString(stats.getDownloadSuccessRate())}%\n`;
     terminalSpinner.text += `Estimated time remaining:  ${mapToDate(stats.getTimeRemaining())}\n`;
 };
 

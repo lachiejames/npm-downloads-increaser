@@ -29,26 +29,15 @@ export class Stats {
         }
     }
 
-    public getDownloadSuccessRate(): number {
-        const totalDownloads: number = this.successfulDownloads + this.failedDownloads;
-        const successRate: number = this.successfulDownloads / totalDownloads;
-        const successRatePercentage: number = 100 * successRate;
-
-        if (Number.isNaN(successRatePercentage)) {
-            return 0;
-        } else {
-            return successRatePercentage;
-        }
-    }
-
     public getTimeRemaining(): number | null {
         const downloadsRemaining: number = this.config.numDownloads - this.successfulDownloads;
-        const downloadSpeed: number = this.getDownloadSpeed() ?? 0;
+        const downloadsPerSecond: number = this.getDownloadSpeed() ?? 0;
+        const secondsRemaining = downloadsRemaining / downloadsPerSecond;
 
-        if (downloadSpeed <= 0) {
+        if (secondsRemaining <= 0) {
             return null;
         } else {
-            return downloadsRemaining / downloadSpeed;
+            return secondsRemaining;
         }
     }
 }

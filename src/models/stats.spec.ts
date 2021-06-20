@@ -2,6 +2,7 @@ import { addMilliseconds, addSeconds } from "date-fns";
 
 import { getMockConfig } from "../../test-utils/mock-config";
 
+import { Config } from "./config.model";
 import { Stats } from "./stats.model";
 
 describe("stats", () => {
@@ -49,37 +50,18 @@ describe("stats", () => {
         });
     });
 
-    describe("getDownloadSuccessRate()", () => {
-        it("if successfulDownloads=1 and failedDownloads=1, returns 50%", () => {
-            const successfulDownloads = 1;
-            const failedDownloads = 1;
-            const stats = new Stats(getMockConfig(), startTime, successfulDownloads, failedDownloads);
+    describe("getTimeRemaining()", () => {
+        const configWith100Downloads: Config = { ...getMockConfig(), numDownloads: 100 };
 
-            expect(stats.getDownloadSuccessRate()).toEqual(50);
-        });
+        it("if numDownloads=100, speed=1dl/s and timeElapsed=1s, returns 99s", () => {
+            setCurrentDate(addSeconds(startTime, 1));
 
-        it("if successfulDownloads=0 and failedDownloads=1, returns 0%", () => {
-            const successfulDownloads = 0;
-            const failedDownloads = 1;
-            const stats = new Stats(getMockConfig(), startTime, successfulDownloads, failedDownloads);
-
-            expect(stats.getDownloadSuccessRate()).toEqual(0);
-        });
-
-        it("if successfulDownloads=1 and failedDownloads=0, returns 100%", () => {
             const successfulDownloads = 1;
             const failedDownloads = 0;
-            const stats = new Stats(getMockConfig(), startTime, successfulDownloads, failedDownloads);
+            const stats = new Stats(configWith100Downloads, startTime, successfulDownloads, failedDownloads);
 
-            expect(stats.getDownloadSuccessRate()).toEqual(100);
-        });
-
-        it("if successfulDownloads=0 and failedDownloads=0, returns 0%", () => {
-            const successfulDownloads = 0;
-            const failedDownloads = 0;
-            const stats = new Stats(getMockConfig(), startTime, successfulDownloads, failedDownloads);
-
-            expect(stats.getDownloadSuccessRate()).toEqual(0);
+            expect(stats.getDownloadSpeed()).toEqual(1);
+            expect(stats.getTimeRemaining()).toEqual(99);
         });
     });
 });

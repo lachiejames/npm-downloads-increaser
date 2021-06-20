@@ -60,7 +60,6 @@ describe("logger", () => {
                 `\n` +
                     `Downloads:                 500\n` +
                     `Speed:                     0.00 dl/s\n` +
-                    `Success rate:              62.50%\n` +
                     `Estimated time remaining:  --:--:--\n`,
             );
         });
