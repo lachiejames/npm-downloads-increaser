@@ -9,9 +9,11 @@ export class Stats {
 
     private config: Config;
 
-    public constructor(config: Config, startTime: number) {
+    public constructor(config: Config, startTime: number, successfulDownloads?: number, failedDownloads?: number) {
         this.config = config;
         this.startTime = startTime;
+        this.successfulDownloads = successfulDownloads ?? this.successfulDownloads;
+        this.failedDownloads = failedDownloads ?? this.failedDownloads;
     }
 
     public getDownloadSpeed(): number {
@@ -19,19 +21,29 @@ export class Stats {
         const timeElapsed: number = currentTime - this.startTime;
         const downloadsPerMillisecond: number = this.successfulDownloads / timeElapsed;
         const downloadsPerSecond: number = downloadsPerMillisecond * 1000;
-        return downloadsPerSecond;
+
+        if (downloadsPerSecond > 0 && isFinite(downloadsPerSecond)) {
+            return downloadsPerSecond;
+        } else {
+            return 0;
+        }
     }
 
     public getDownloadSuccessRate(): number {
         const totalDownloads: number = this.successfulDownloads + this.failedDownloads;
         const successRate: number = this.successfulDownloads / totalDownloads;
         const successRatePercentage: number = 100 * successRate;
-        return successRatePercentage;
+
+        if (Number.isNaN(successRatePercentage)) {
+            return 0;
+        } else {
+            return successRatePercentage;
+        }
     }
 
     public getTimeRemaining(): number | null {
         const downloadsRemaining: number = this.config.numDownloads - this.successfulDownloads;
-        const downloadSpeed: number = this.getDownloadSpeed();
+        const downloadSpeed: number = this.getDownloadSpeed() ?? 0;
 
         if (downloadSpeed <= 0) {
             return null;

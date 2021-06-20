@@ -1,4 +1,6 @@
-import { mapToDate, mapToString } from "./logger";
+import { getMockStats } from "../../test-utils/mock-stats";
+
+import { logDownload, mapToDate, mapToString, terminalSpinner } from "./logger";
 
 describe("logger", () => {
     describe("mapToString()", () => {
@@ -44,5 +46,23 @@ describe("logger", () => {
             expect(mapToDate(null)).toEqual("--:--:--");
         });
     });
-    
+
+    describe("logDownload()", () => {
+        it.skip("starts the terminal spinner", () => {
+            expect(terminalSpinner.isSpinning).toEqual(false);
+            logDownload(getMockStats());
+            expect(terminalSpinner.isSpinning).toEqual(true);
+        });
+
+        it("if stats={}, logs ''", () => {
+            logDownload(getMockStats());
+            expect(terminalSpinner.text).toEqual(
+                `\n` +
+                    `Downloads:                 500\n` +
+                    `Speed:                     0.00 dl/s\n` +
+                    `Success rate:              62.50%\n` +
+                    `Estimated time remaining:  --:--:--\n`,
+            );
+        });
+    });
 });
