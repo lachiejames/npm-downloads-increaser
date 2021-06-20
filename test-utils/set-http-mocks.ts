@@ -1,7 +1,7 @@
 import { GaxiosError } from "gaxios";
 import nock from "nock";
 
-import { Config } from "../src/models/config.model";
+import { getConfig } from "../src/config";
 
 import mockNpmsResponse from "./mock-npms-response.json";
 
@@ -15,33 +15,33 @@ const MOCK_ERROR_RESPONSE: GaxiosError<unknown> = {
     name: "test name",
 };
 
-const setMockNpmsResponse = (config: Config): void => {
-    nock("https://api.npms.io").get(`/v2/package/${config.packageName}`).reply(200, mockNpmsResponse);
+const setMockNpmsResponse = (): void => {
+    nock("https://api.npms.io").get(`/v2/package/${getConfig().packageName}`).reply(200, mockNpmsResponse);
 };
 
-const setMockDownloadResponse = (config: Config): void => {
-    nock("https://registry.yarnpkg.com").get(`/${config.packageName}/-/${config.packageName}-${MOCK_PACKAGE_VERSION}.tgz`).reply(200, {});
+const setMockDownloadResponse = (): void => {
+    nock("https://registry.yarnpkg.com").get(`/${getConfig().packageName}/-/${getConfig().packageName}-${MOCK_PACKAGE_VERSION}.tgz`).reply(200, {});
 };
 
-const setMockNpmsErrorResponse = (config: Config): void => {
-    nock("https://api.npms.io").get(`/v2/package/${config.packageName}`).replyWithError(MOCK_ERROR_RESPONSE);
+const setMockNpmsErrorResponse = (): void => {
+    nock("https://api.npms.io").get(`/v2/package/${getConfig().packageName}`).replyWithError(MOCK_ERROR_RESPONSE);
 };
 
-const setMockDownloadErrorResponse = (config: Config): void => {
+const setMockDownloadErrorResponse = (): void => {
     nock("https://registry.yarnpkg.com")
-        .get(`/${config.packageName}/-/${config.packageName}-${MOCK_PACKAGE_VERSION}.tgz`)
+        .get(`/${getConfig().packageName}/-/${getConfig().packageName}-${MOCK_PACKAGE_VERSION}.tgz`)
         .replyWithError(MOCK_ERROR_RESPONSE);
 };
 
-export const setMockResponses = (config: Config): void => {
-    setMockNpmsResponse(config);
+export const setMockResponses = (): void => {
+    setMockNpmsResponse();
 
-    for (let i = 0; i <= config.numDownloads; i++) {
-        setMockDownloadResponse(config);
+    for (let i = 0; i <= getConfig().numDownloads; i++) {
+        setMockDownloadResponse();
     }
 };
 
-export const setMockErrorResponses = (config: Config): void => {
-    setMockNpmsErrorResponse(config);
-    setMockDownloadErrorResponse(config);
+export const setMockErrorResponses = (): void => {
+    setMockNpmsErrorResponse();
+    setMockDownloadErrorResponse();
 };
