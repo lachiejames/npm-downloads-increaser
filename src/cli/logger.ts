@@ -1,7 +1,7 @@
 import { format } from "date-fns";
 import ora, { Ora } from "ora";
 
-import { Config } from "../models/config.model";
+import { getConfig } from "../config";
 import { Stats } from "../models/stats.model";
 
 export const terminalSpinner: Ora = ora();
@@ -29,13 +29,13 @@ export const logDownload = (stats: Stats): void => {
     }
 
     terminalSpinner.text = `\n`;
-    terminalSpinner.text += `Download count:            ${mapToString(stats.successfulDownloads)}/${stats.config.numDownloads}\n`;
+    terminalSpinner.text += `Download count:            ${mapToString(stats.successfulDownloads)}/${getConfig().numDownloads}\n`;
     terminalSpinner.text += `Download speed:            ${mapToString(stats.getDownloadSpeed())} dl/s\n`;
     terminalSpinner.text += `Estimated time remaining:  ${mapToDate(stats.getTimeRemaining())}\n`;
 };
 
-export const logComplete = (config: Config): void => {
-    terminalSpinner.succeed(`Completed ${config.numDownloads} downloads for ${config.packageName}`);
+export const logComplete = (): void => {
+    terminalSpinner.succeed(`Completed ${getConfig().numDownloads} downloads for ${getConfig().packageName}`);
 };
 
 export const logError = (error: Error): void => {

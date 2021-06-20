@@ -1,33 +1,30 @@
 import MockConsole from "jest-mock-console";
 import { cleanAll } from "nock";
 
-import { getMockConfig } from "../../test-utils/mock-config";
+import { setMockConfig } from "../../test-utils/mock-config";
 import { getMockStats } from "../../test-utils/mock-stats";
 import { MOCK_PACKAGE_VERSION, setMockErrorResponses, setMockResponses } from "../../test-utils/set-http-mocks";
-import { Config } from "../models/config.model";
 
 import { downloadPackage, queryNpms, run } from "./spammer";
 
 describe("spammer", () => {
-    let config: Config;
-
     beforeEach(() => {
         cleanAll();
         MockConsole();
-        config = getMockConfig();
+        setMockConfig();
     });
 
     describe("queryNpms()", () => {
         it("resolves when response is 200", async () => {
-            setMockResponses(config);
+            setMockResponses();
 
-            await expect(queryNpms(config.packageName)).resolves.not.toThrowError();
+            await expect(queryNpms()).resolves.not.toThrowError();
         });
 
         it("throws error when request fails", async () => {
-            setMockErrorResponses(config);
+            setMockErrorResponses();
 
-            await expect(queryNpms(config.packageName)).rejects.toThrowError(
+            await expect(queryNpms()).rejects.toThrowError(
                 new Error(
                     `Failed to download https://api.npms.io/v2/package/code-review-leaderboard\n` +
                         `request to https://api.npms.io/v2/package/code-review-leaderboard failed, reason: test message`,
@@ -38,28 +35,28 @@ describe("spammer", () => {
 
     describe("downloadPackage()", () => {
         it("resolves when response is 200", async () => {
-            setMockResponses(config);
+            setMockResponses();
 
-            await expect(downloadPackage(config, MOCK_PACKAGE_VERSION, getMockStats())).resolves.not.toThrowError();
+            await expect(downloadPackage(MOCK_PACKAGE_VERSION, getMockStats())).resolves.not.toThrowError();
         });
 
         it("resolves when request fails", async () => {
-            setMockErrorResponses(config);
+            setMockErrorResponses();
 
-            await expect(downloadPackage(config, MOCK_PACKAGE_VERSION, getMockStats())).resolves.not.toThrowError();
+            await expect(downloadPackage(MOCK_PACKAGE_VERSION, getMockStats())).resolves.not.toThrowError();
         });
     });
 
     describe("run()", () => {
         it("resolves when responses are all successful", async () => {
-            setMockResponses(config);
+            setMockResponses();
 
-            await expect(run(config)).resolves.not.toThrowError();
+            await expect(run()).resolves.not.toThrowError();
         });
 
         it("resolves when responses include failures", async () => {
-            setMockErrorResponses(config);
-            await expect(run(config)).resolves.not.toThrowError();
+            setMockErrorResponses();
+            await expect(run()).resolves.not.toThrowError();
         });
     });
 });

@@ -1,14 +1,15 @@
 import { GaxiosError, GaxiosResponse, request } from "gaxios";
 
+import { getConfig } from "src/config";
+
 import { logComplete, logDownload, logError } from "../cli/logger";
-import { Config } from "../models/config.model";
 import { NpmjsResponse } from "../models/npmjs-response.model";
 import { Stats } from "../models/stats.model";
 
-export const queryNpms = async (packageName: string): Promise<NpmjsResponse> => {
+export const queryNpms = async (): Promise<NpmjsResponse> => {
     const npmsResponse: GaxiosResponse<NpmjsResponse> = await request<NpmjsResponse>({
         baseUrl: "https://api.npms.io",
-        url: `/v2/package/${packageName}`,
+        url: `/v2/package/${getConfig().packageName}`,
         method: "GET",
     }).catch((response: GaxiosError<NpmjsResponse>) => {
         throw Error(`Failed to download ${response.config.url}\n${response.message}`);
@@ -17,12 +18,12 @@ export const queryNpms = async (packageName: string): Promise<NpmjsResponse> => 
     return npmsResponse.data;
 };
 
-export const downloadPackage = async (config: Config, version: string, stats: Stats): Promise<unknown> => {
+export const downloadPackage = async (version: string, stats: Stats): Promise<unknown> => {
     return request<unknown>({
         baseUrl: "https://registry.yarnpkg.com",
-        url: `/${config.packageName}/-/${config.packageName}-${version}.tgz`,
+        url: `/${getConfig().packageName}/-/${getConfig().packageName}-${version}.tgz`,
         method: "GET",
-        timeout: config.downloadTimeout,
+        timeout: getConfig().downloadTimeout,
         responseType: "stream",
     })
         .then((_) => {
@@ -33,32 +34,32 @@ export const downloadPackage = async (config: Config, version: string, stats: St
         });
 };
 
-const spamDownloads = async (config: Config, version: string, stats: Stats): Promise<void> => {
+const spamDownloads = async ( version: string, stats: Stats): Promise<void> => {
     const requests: Promise<unknown>[] = [];
 
-    for (let i = 0; i < config.maxConcurrentDownloads; i++) {
-        requests.push(downloadPackage(config, version, stats));
+    for (let i = 0; i < getConfig().maxConcurrentDownloads; i++) {
+        requests.push(downloadPackage(version, stats));
     }
 
     await Promise.all(requests);
 
-    if (stats.successfulDownloads < config.numDownloads) {
-        await spamDownloads(config, version, stats);
+    if (stats.successfulDownloads < getConfig().numDownloads) {
+        await spamDownloads(version, stats);
     }
 };
 
-export const run = async (config: Config): Promise<void> => {
+export const run = async (): Promise<void> => {
     try {
-        const npmsResponse: NpmjsResponse = await queryNpms(config.packageName);
+        const npmsResponse: NpmjsResponse = await queryNpms();
         const version: string = npmsResponse.collected.metadata.version;
         const startTime = Date.now();
-        const stats: Stats = new Stats(config, startTime);
+        const stats: Stats = new Stats(startTime);
 
         const loggingInterval: NodeJS.Timeout = setInterval(() => logDownload(stats), 1000);
-        await spamDownloads(config, version, stats);
+        await spamDownloads(version, stats);
 
         clearInterval(loggingInterval);
-        logComplete(config);
+        logComplete();
     } catch (e) {
         logError(e);
     }

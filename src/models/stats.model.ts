@@ -1,4 +1,4 @@
-import { Config } from "./config.model";
+import { getConfig } from "../config";
 
 export class Stats {
     public successfulDownloads = 0;
@@ -7,10 +7,8 @@ export class Stats {
 
     private startTime: number;
 
-    public config: Config;
 
-    public constructor(config: Config, startTime: number, successfulDownloads?: number, failedDownloads?: number) {
-        this.config = config;
+    public constructor(startTime: number, successfulDownloads?: number, failedDownloads?: number) {
         this.startTime = startTime;
         this.successfulDownloads = successfulDownloads ?? this.successfulDownloads;
         this.failedDownloads = failedDownloads ?? this.failedDownloads;
@@ -30,7 +28,7 @@ export class Stats {
     }
 
     public getTimeRemaining(): number | null {
-        const downloadsRemaining: number = this.config.numDownloads - this.successfulDownloads;
+        const downloadsRemaining: number = getConfig().numDownloads - this.successfulDownloads;
         const downloadsPerSecond = this.getDownloadSpeed();
 
         if (downloadsPerSecond <= 0) {
