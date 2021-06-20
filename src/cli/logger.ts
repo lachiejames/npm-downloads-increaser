@@ -6,7 +6,7 @@ import { Stats } from "../models/stats.model";
 
 export const terminalSpinner: Ora = ora();
 
-const mapToString = (num: number): string => {
+export const mapToString = (num: number): string => {
     if (Number.isInteger(num)) {
         return num.toString();
     } else {
@@ -14,11 +14,12 @@ const mapToString = (num: number): string => {
     }
 };
 
-const mapToDate = (num: number | null): string => {
-    if (num === null || num <= 0) {
+export const mapToDate = (num: number | null): string => {
+    if (num === null || num < 0) {
         return "--:--:--";
     } else {
-        return format(new Date(num), "hh:mm:ss");
+        // For some reason Date(num) adds +10 hours onto my date in this format, so this is a workaround
+        return format(new Date(0, 0, 0, 0, 0, 0, num), "HH:mm:ss");
     }
 };
 
