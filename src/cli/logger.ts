@@ -1,4 +1,4 @@
-import { format } from "date-fns";
+import { format, secondsToHours } from "date-fns";
 import ora, { Ora } from "ora";
 
 import { getConfig } from "../config";
@@ -14,13 +14,17 @@ export const mapToString = (num: number): string => {
     }
 };
 
-export const mapToDate = (num: number | null): string => {
-    if (num === null || num < 0) {
+export const mapToDate = (seconds: number | null): string => {
+    if (seconds === null || seconds < 0) {
         return "--:--:--";
-    } else {
-        // For some reason Date(num) adds +10 hours onto my date in this format, so this is a workaround
-        return format(new Date(0, 0, 0, 0, 0, num), "HH:mm:ss");
     }
+
+    const dateFromSeconds: Date = new Date(0, 0, 0, 0, 0, seconds);
+    const hours: number = secondsToHours(seconds);
+    const hoursString:string = hours.toString().padStart(2, "0");
+    const minutesSecondsString:string = format(dateFromSeconds, "mm:ss");
+
+    return `${hoursString}:${minutesSecondsString}`;
 };
 
 export const logDownload = (stats: Stats): void => {

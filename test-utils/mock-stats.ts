@@ -1,11 +1,11 @@
 import { Stats } from "../src/models/stats.model";
 
-export const getMockStats = (): Stats => {
-    const mockDate: Date = new Date(2020, 1, 1);
-    const stats: Stats = new Stats(mockDate.getTime());
+import { MOCK_START_TIME } from "./mock-config";
 
-    stats.successfulDownloads = 500;
-    stats.failedDownloads = 300;
+export const getMockStats = (): Stats => {
+    const successfulDownloads = 500;
+    const failedDownloads = 300;
+    const stats: Stats = new Stats(MOCK_START_TIME, successfulDownloads, failedDownloads);
 
     return stats;
 };

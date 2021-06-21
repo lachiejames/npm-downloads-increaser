@@ -14,7 +14,6 @@ export const getPackageName = async (): Promise<string> => {
         name: PROMPT_NAME,
         type: "text",
         message: "Package name: ",
-        initial: "npm-downloads-increaser",
         validate: (name: string) => validatePackageName(name),
     });
 
@@ -26,7 +25,7 @@ export const getNumberOfDownloads = async (): Promise<number> => {
         name: PROMPT_NAME,
         type: "number",
         message: "Number of downloads: ",
-        initial: 1000000,
+        initial: 1000,
         validate: (downloads: number) => validateNumbers(downloads),
     });
 

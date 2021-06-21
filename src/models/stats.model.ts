@@ -28,12 +28,12 @@ export class Stats {
 
     public getTimeRemaining(): number | null {
         const downloadsRemaining: number = getConfig().numDownloads - this.successfulDownloads;
-        const downloadsPerSecond = this.getDownloadSpeed();
+        const downloadsPerSecond: number = this.getDownloadSpeed();
 
         if (downloadsPerSecond <= 0) {
             return null;
         } else {
-            const secondsRemaining = downloadsRemaining / downloadsPerSecond;
+            const secondsRemaining: number = downloadsRemaining / downloadsPerSecond;
             return secondsRemaining;
         }
     }
