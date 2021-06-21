@@ -1,8 +1,7 @@
 import { GaxiosError, GaxiosResponse, request } from "gaxios";
 
-import { getConfig } from "src/config";
-
 import { logComplete, logDownload, logError } from "../cli/logger";
+import { getConfig } from "../config";
 import { NpmjsResponse } from "../models/npmjs-response.model";
 import { Stats } from "../models/stats.model";
 

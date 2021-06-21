@@ -70,14 +70,14 @@ describe("logger", () => {
         });
 
         // Failing due to a bug in Ora
-        it.skip("starts the terminal spinner", () => {
+        it("starts the terminal spinner", () => {
             expect(terminalSpinner.isSpinning).toEqual(false);
             logDownload(getMockStats());
             expect(terminalSpinner.isSpinning).toEqual(true);
         });
 
         // Failing due to a bug in Ora
-        it.skip("if terminal spinner already started, it continues", () => {
+        it("if terminal spinner already started, it continues", () => {
             terminalSpinner.start();
             expect(terminalSpinner.isSpinning).toEqual(true);
             logDownload(getMockStats());
