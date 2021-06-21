@@ -1,6 +1,3 @@
 coverage/**
 lib/**
 CHANGELOG.md
-
-# Messes up string formatting
-**/logger.spec.ts
