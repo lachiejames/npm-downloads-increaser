@@ -6,14 +6,6 @@ interface NpmjsCollected {
     metadata: NpmjsMetadata;
 }
 
-interface NpmjsPopularity {
-    downloadsCount: number;
-}
-
-interface NpmjsEvaluation {
-    popularity: NpmjsPopularity;
-}
-
 interface NpmjsDetail {
     popularity: number;
 }
@@ -24,8 +16,7 @@ interface NpmjsScore {
 }
 
 export interface NpmjsResponse {
-    analyzedAt: Date;
+    analyzedAt: string;
     collected: NpmjsCollected;
-    evaluation: NpmjsEvaluation;
     score: NpmjsScore;
 }

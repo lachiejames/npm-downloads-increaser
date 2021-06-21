@@ -2,6 +2,7 @@ import MockConsole from "jest-mock-console";
 import { cleanAll } from "nock";
 
 import { setMockConfig } from "../../test-utils/mock-config";
+import { getMockStats } from "../../test-utils/mock-stats";
 import { MOCK_PACKAGE_VERSION, setMockErrorResponses, setMockResponses } from "../../test-utils/set-http-mocks";
 
 import { downloadPackage, queryNpms, run } from "./spammer";
@@ -36,13 +37,13 @@ describe("spammer", () => {
         it("resolves when response is 200", async () => {
             setMockResponses();
 
-            await expect(downloadPackage(MOCK_PACKAGE_VERSION)).resolves.not.toThrowError();
+            await expect(downloadPackage(MOCK_PACKAGE_VERSION, getMockStats())).resolves.not.toThrowError();
         });
 
         it("resolves when request fails", async () => {
             setMockErrorResponses();
 
-            await expect(downloadPackage(MOCK_PACKAGE_VERSION)).resolves.not.toThrowError();
+            await expect(downloadPackage(MOCK_PACKAGE_VERSION, getMockStats())).resolves.not.toThrowError();
         });
     });
 

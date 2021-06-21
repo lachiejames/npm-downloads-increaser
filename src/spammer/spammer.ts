@@ -1,11 +1,9 @@
 import { GaxiosError, GaxiosResponse, request } from "gaxios";
 
-import { getConfig } from "src/config";
-
 import { logComplete, logDownload, logError } from "../cli/logger";
+import { getConfig } from "../config";
 import { NpmjsResponse } from "../models/npmjs-response.model";
-
-let numSuccessful = 0;
+import { Stats } from "../models/stats.model";
 
 export const queryNpms = async (): Promise<NpmjsResponse> => {
     const npmsResponse: GaxiosResponse<NpmjsResponse> = await request<NpmjsResponse>({
@@ -19,7 +17,7 @@ export const queryNpms = async (): Promise<NpmjsResponse> => {
     return npmsResponse.data;
 };
 
-export const downloadPackage = async (version: string): Promise<GaxiosResponse<unknown> | null> => {
+export const downloadPackage = async (version: string, stats: Stats): Promise<unknown> => {
     return request<unknown>({
         baseUrl: "https://registry.yarnpkg.com",
         url: `/${getConfig().packageName}/-/${getConfig().packageName}-${version}.tgz`,
@@ -27,27 +25,25 @@ export const downloadPackage = async (version: string): Promise<GaxiosResponse<u
         timeout: getConfig().downloadTimeout,
         responseType: "stream",
     })
-        .then((response) => {
-            numSuccessful++;
-            logDownload(numSuccessful);
-            return response;
+        .then((_) => {
+            stats.successfulDownloads++;
         })
         .catch((_) => {
-            return null;
+            stats.failedDownloads++;
         });
 };
 
-const spamDownloads = async (version: string): Promise<void> => {
-    const requests: Promise<GaxiosResponse<unknown> | null>[] = [];
+const spamDownloads = async (version: string, stats: Stats): Promise<void> => {
+    const requests: Promise<unknown>[] = [];
 
     for (let i = 0; i < getConfig().maxConcurrentDownloads; i++) {
-        requests.push(downloadPackage(version));
+        requests.push(downloadPackage(version, stats));
     }
 
     await Promise.all(requests);
 
-    if (numSuccessful < getConfig().numDownloads) {
-        await spamDownloads(version);
+    if (stats.successfulDownloads < getConfig().numDownloads) {
+        await spamDownloads(version, stats);
     }
 };
 
@@ -55,9 +51,13 @@ export const run = async (): Promise<void> => {
     try {
         const npmsResponse: NpmjsResponse = await queryNpms();
         const version: string = npmsResponse.collected.metadata.version;
+        const startTime = Date.now();
+        const stats: Stats = new Stats(startTime);
 
-        await spamDownloads(version);
+        const loggingInterval: NodeJS.Timeout = setInterval(() => logDownload(stats), 1000);
+        await spamDownloads(version, stats);
 
+        clearInterval(loggingInterval);
         logComplete();
     } catch (e) {
         logError(e);

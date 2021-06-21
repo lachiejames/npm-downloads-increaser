@@ -40,9 +40,9 @@ module.exports = {
         },
     ],
     rules: {
-        "import/no-duplicates": "error",
+        "import/no-duplicates": "warn",
         "import/order": [
-            "error",
+            "warn",
             {
                 "alphabetize": {
                     order: "asc",
@@ -64,12 +64,12 @@ module.exports = {
             },
         ],
         "sort-imports": [
-            "error",
+            "warn",
             {
                 ignoreDeclarationSort: true,
             },
         ],
-        "no-unused-expressions": "error",
-        "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
+        "no-unused-expressions": "warn",
+        "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
     },
 };

@@ -4,8 +4,9 @@
     "description": "Raises the popularity score on your package through nefarious means.",
     "author": "Lachie James",
     "license": "MIT",
-    "main": "./lib/index.js",
+    "main": "./lib/src/index.js",
     "dependencies": {
+        "date-fns": "2.22.1",
         "gaxios": "4.3.0",
         "ora": "5.4.1",
         "prompts": "2.4.1"
@@ -40,7 +41,7 @@
         "semantic-release": "semantic-release"
     },
     "bin": {
-        "npm-downloads-increaser": "./lib/cli.js"
+        "npm-downloads-increaser": "./lib/src/cli.js"
     },
     "directories": {
         "lib": "lib"
