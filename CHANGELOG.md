@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/lachiejames/npm-downloads-increaser/compare/v1.7.0...v1.8.0) (2021-06-21)
+
+
+### Features
+
+* Add more detailed logging ([#25](https://github.com/lachiejames/npm-downloads-increaser/issues/25)) ([3c80ccb](https://github.com/lachiejames/npm-downloads-increaser/commit/3c80ccbda62d79a0ce9f945da7173251d5d3193d))
+
 # [1.7.0](https://github.com/lachiejames/npm-downloads-increaser/compare/v1.6.2...v1.7.0) (2021-06-20)
 
 
