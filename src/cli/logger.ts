@@ -19,10 +19,11 @@ export const mapToDate = (seconds: number | null): string => {
         return "--:--:--";
     }
 
-    const dateFromSeconds: Date = new Date(0, 0, 0, 0, 0, seconds);
+    const milliseconds = 1000 * seconds;
+    const date: Date = new Date(milliseconds);
     const hours: number = secondsToHours(seconds);
-    const hoursString:string = hours.toString().padStart(2, "0");
-    const minutesSecondsString:string = format(dateFromSeconds, "mm:ss");
+    const hoursString: string = hours.toString().padStart(2, "0");
+    const minutesSecondsString: string = format(date, "mm:ss");
 
     return `${hoursString}:${minutesSecondsString}`;
 };

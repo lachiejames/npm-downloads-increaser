@@ -69,14 +69,12 @@ describe("logger", () => {
             setCurrentDate(addSeconds(MOCK_START_TIME, 1));
         });
 
-        // Failing due to a bug in Ora
         it("starts the terminal spinner", () => {
             expect(terminalSpinner.isSpinning).toEqual(false);
             logDownload(getMockStats());
             expect(terminalSpinner.isSpinning).toEqual(true);
         });
 
-        // Failing due to a bug in Ora
         it("if terminal spinner already started, it continues", () => {
             terminalSpinner.start();
             expect(terminalSpinner.isSpinning).toEqual(true);
