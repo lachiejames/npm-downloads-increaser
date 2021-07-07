@@ -35,7 +35,7 @@ Once you specify your configuration, this will start spamming downloads for the 
 
 ### Demo
 
-![Video demo](/assets/demo.gif?raw=true)
+![Video demo](https://github.com/lachiejames/media-host/blob/main/npm-downloads-increaser/demo.gif?raw=true)
 
 ## Running in TypeScript
 
