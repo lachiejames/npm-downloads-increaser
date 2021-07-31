@@ -1,3 +1,10 @@
+## [1.8.2](https://github.com/lachiejames/npm-downloads-increaser/compare/v1.8.1...v1.8.2) (2021-07-31)
+
+
+### Bug Fixes
+
+* **deps:** update dependency date-fns to v2.23.0 ([#43](https://github.com/lachiejames/npm-downloads-increaser/issues/43)) ([3ed395c](https://github.com/lachiejames/npm-downloads-increaser/commit/3ed395ca3cf883e63181a84632b5db7de0508a0e))
+
 ## [1.8.1](https://github.com/lachiejames/npm-downloads-increaser/compare/v1.8.0...v1.8.1) (2021-07-07)
 
 
