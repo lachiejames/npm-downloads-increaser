@@ -22,6 +22,8 @@ npm-downloads-increaser
 
 Once you specify your configuration, this will start spamming downloads for the provided package in the npmjs registry. This will increase the popularity score of the npm package.
 
+NOTE: The npmJS Weekly Downloads are updated **once every 24 hours**, so results will not be instantly visible.
+
 ### Configuration options
 
 | Property               | Description                                             | Example                     |
@@ -76,3 +78,8 @@ Running tests:
 ```
 yarn test
 ```
+
+### More info
+
+Check out this blog post that describes `npm-downloads-increaser` in further detail:
+https://lachiejames.com/faking-downloads-for-npm-packages/
