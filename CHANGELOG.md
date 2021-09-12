@@ -1,3 +1,10 @@
+## [1.8.4](https://github.com/lachiejames/npm-downloads-increaser/compare/v1.8.3...v1.8.4) (2021-09-12)
+
+
+### Bug Fixes
+
+* **deps:** update dependency gaxios to v4.3.1 ([#64](https://github.com/lachiejames/npm-downloads-increaser/issues/64)) ([b397560](https://github.com/lachiejames/npm-downloads-increaser/commit/b39756028f3eaee0029ff14f1fd54a908bf32fb8))
+
 ## [1.8.3](https://github.com/lachiejames/npm-downloads-increaser/compare/v1.8.2...v1.8.3) (2021-08-09)
 
 
