@@ -2744,16 +2744,16 @@ gauge@~2.7.3:
     strip-ansi "^3.0.1"
     wide-align "^1.1.0"
 
-gaxios@4.3.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/gaxios/-/gaxios-4.3.0.tgz#ad4814d89061f85b97ef52aed888c5dbec32f774"
-  integrity sha512-pHplNbslpwCLMyII/lHPWFQbJWOX0B3R1hwBEOvzYi1GmdKZruuEHK4N9V6f7tf1EaPYyF80mui1+344p6SmLg==
+gaxios@4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/gaxios/-/gaxios-4.3.1.tgz#d45fd94a63ec0fc657d40343c31cab5e24c75f3b"
+  integrity sha512-9qXV7yrMCGzTrphl9/YGMVH41oSg0rhn1j3wJWed4Oqk45/hXDD2wBT5J1NjQcqTCcv4g3nFnyQ7reSRHNgBgw==
   dependencies:
     abort-controller "^3.0.0"
     extend "^3.0.2"
     https-proxy-agent "^5.0.0"
     is-stream "^2.0.0"
-    node-fetch "^2.3.0"
+    node-fetch "^2.6.1"
 
 gensync@^1.0.0-beta.2:
   version "1.0.0-beta.2"
@@ -4501,7 +4501,7 @@ node-emoji@^1.10.0:
   dependencies:
     lodash.toarray "^4.4.0"
 
-node-fetch@^2.3.0, node-fetch@^2.6.1:
+node-fetch@^2.6.1:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.1.tgz#045bd323631f76ed2e2b55573394416b639a0052"
   integrity sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==
