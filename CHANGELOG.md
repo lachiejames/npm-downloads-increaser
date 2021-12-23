@@ -1,3 +1,12 @@
+## [1.8.5](https://github.com/lachiejames/npm-downloads-increaser/compare/v1.8.4...v1.8.5) (2021-12-23)
+
+
+### Bug Fixes
+
+* **deps:** update dependency date-fns to v2.25.0 ([#73](https://github.com/lachiejames/npm-downloads-increaser/issues/73)) ([139a181](https://github.com/lachiejames/npm-downloads-increaser/commit/139a18173931b1c7cc787a0cb3aea80384101430))
+* **deps:** update dependency gaxios to v4.3.2 ([#71](https://github.com/lachiejames/npm-downloads-increaser/issues/71)) ([c2c56f6](https://github.com/lachiejames/npm-downloads-increaser/commit/c2c56f6162f338b5240a7dc66076c9c0b8e32cf6))
+* **deps:** update dependency prompts to v2.4.2 ([#77](https://github.com/lachiejames/npm-downloads-increaser/issues/77)) ([57aece8](https://github.com/lachiejames/npm-downloads-increaser/commit/57aece8fec3a1bac8209baab02b6061c3363fa01))
+
 ## [1.8.4](https://github.com/lachiejames/npm-downloads-increaser/compare/v1.8.3...v1.8.4) (2021-09-12)
 
 
