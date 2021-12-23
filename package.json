@@ -26,7 +26,7 @@
         "eslint-plugin-import": "2.25.3",
         "find-root": "1.1.0",
         "jest": "27.4.5",
-        "jest-mock-console": "1.1.0",
+        "jest-mock-console": "1.2.3",
         "nock": "13.2.1",
         "prettier": "2.4.0",
         "semantic-release": "17.4.7",
