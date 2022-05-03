@@ -5,10 +5,25 @@ import { getConfig } from "../config";
 import { NpmjsResponse } from "../models/npmjs-response.model";
 import { Stats } from "../models/stats.model";
 
+// If package name is scoped, return the package name without the scope
+// e.g. package-name url -> /package-name/-/package-name-1.0.0.tgz
+// e.g. @scope/package-name url -> /@scope/package-name/-/package-name-1.0.0.tgz
+// Fixes https://github.com/lachiejames/npm-downloads-increaser/issues/91
+export const stripOrganisationFromPackageName = (packageName: string): string => {
+    const packageNameWithScope: string[] = packageName.split("/");
+    return packageNameWithScope.pop() ?? packageName;
+};
+
+export const getEncodedPackageName = (packageName: string): string => {
+    return encodeURIComponent(packageName);
+};
+
 export const queryNpms = async (): Promise<NpmjsResponse> => {
+    const encodedPackageName: string = getEncodedPackageName(getConfig().packageName);
+
     const npmsResponse: GaxiosResponse<NpmjsResponse> = await request<NpmjsResponse>({
         baseUrl: "https://api.npms.io",
-        url: `/v2/package/${getConfig().packageName}`,
+        url: `/v2/package/${encodedPackageName}`,
         method: "GET",
     }).catch((response: GaxiosError<NpmjsResponse>) => {
         throw Error(`Failed to download ${response.config.url}\n${response.message}`);
@@ -18,9 +33,12 @@ export const queryNpms = async (): Promise<NpmjsResponse> => {
 };
 
 export const downloadPackage = async (version: string, stats: Stats): Promise<unknown> => {
+    const packageName: string = getConfig().packageName;
+    const unscopedPackageName: string = stripOrganisationFromPackageName(packageName);
+
     return request<unknown>({
         baseUrl: "https://registry.yarnpkg.com",
-        url: `/${getConfig().packageName}/-/${getConfig().packageName}-${version}.tgz`,
+        url: `/${packageName}/-/${unscopedPackageName}-${version}.tgz`,
         method: "GET",
         timeout: getConfig().downloadTimeout,
         responseType: "stream",
