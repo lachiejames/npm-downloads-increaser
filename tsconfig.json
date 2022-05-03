@@ -1,34 +1,18 @@
 {
     "compilerOptions": {
         "allowJs": true,
-        "allowSyntheticDefaultImports": true,
-        "alwaysStrict": true,
-        "baseUrl": ".",
+        "module": "commonjs",
+        "resolveJsonModule": true,
+        "target": "ES2020",
+        "declaration": true,
+        "declarationMap": true,
+        "sourceMap": true,
+        "outDir": "./lib",
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
-        "listEmittedFiles": true,
-        "module": "commonjs",
-        "moduleResolution": "node",
-        "noFallthroughCasesInSwitch": true,
-        "noImplicitAny": true,
-        "noImplicitReturns": true,
-        "noImplicitThis": true,
-        "outDir": "lib",
-        "paths": {
-            "code-review-leaderboard": ["lib"],
-            "code-review-leaderboard/*": ["lib/*"]
-        },
-        "removeComments": true,
-        "resolveJsonModule": true,
-        "sourceMap": true,
         "strict": true,
-        "strictBindCallApply": true,
-        "strictFunctionTypes": true,
-        "strictNullChecks": true,
-        "strictPropertyInitialization": true,
-        "target": "ES2015"
+        "useUnknownInCatchVariables": false
     },
-    "exclude": ["lib/**/*", "node_modules", "**/*.spec.ts", "**/*.test.ts", "babel.config.js", "__mocks__", "coverage"],
-    "include": ["src/**/*.ts"],
-    "lib": ["ES2015", "DOM"]
+    "include": ["src/**/*.ts", "npm-downloads-increaser.config.js"],
+    "exclude": ["src/**/*.spec.ts"]
 }

@@ -5,9 +5,8 @@ variables:
 
 jobs:
     - job: Test
-      timeoutInMinutes: 20
       pool:
-          vmImage: "macOS-latest"
+          vmImage: macOS-latest
 
       steps:
           - script: yarn --network-timeout 100000
