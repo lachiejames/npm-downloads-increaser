@@ -4,11 +4,14 @@ import { logComplete, logDownload, logError } from "../cli/logger";
 import { getConfig } from "../config";
 import { NpmjsResponse } from "../models/npmjs-response.model";
 import { Stats } from "../models/stats.model";
+import { getEncodedPackageName, stripOrganisationFromPackageName } from "./utils";
 
 export const queryNpms = async (): Promise<NpmjsResponse> => {
+    const encodedPackageName: string = getEncodedPackageName(getConfig().packageName);
+
     const npmsResponse: GaxiosResponse<NpmjsResponse> = await request<NpmjsResponse>({
         baseUrl: "https://api.npms.io",
-        url: `/v2/package/${getConfig().packageName}`,
+        url: `/v2/package/${encodedPackageName}`,
         method: "GET",
     }).catch((response: GaxiosError<NpmjsResponse>) => {
         throw Error(`Failed to download ${response.config.url}\n${response.message}`);
@@ -18,9 +21,12 @@ export const queryNpms = async (): Promise<NpmjsResponse> => {
 };
 
 export const downloadPackage = async (version: string, stats: Stats): Promise<unknown> => {
+    const packageName: string = getConfig().packageName;
+    const unscopedPackageName: string = stripOrganisationFromPackageName(packageName);
+
     return request<unknown>({
         baseUrl: "https://registry.yarnpkg.com",
-        url: `/${getConfig().packageName}/-/${getConfig().packageName}-${version}.tgz`,
+        url: `/${packageName}/-/${unscopedPackageName}-${version}.tgz`,
         method: "GET",
         timeout: getConfig().downloadTimeout,
         responseType: "stream",
