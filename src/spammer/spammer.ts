@@ -25,12 +25,8 @@ export const downloadPackage = async (version: string, stats: Stats): Promise<un
         timeout: getConfig().downloadTimeout,
         responseType: "stream",
     })
-        .then((_) => {
-            stats.successfulDownloads++;
-        })
-        .catch((_) => {
-            stats.failedDownloads++;
-        });
+        .then((_) => stats.successfulDownloads++)
+        .catch((_) => stats.failedDownloads++);
 };
 
 const spamDownloads = async (version: string, stats: Stats): Promise<void> => {
