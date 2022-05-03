@@ -5,41 +5,13 @@ import { setMockConfig } from "../../test-utils/mock-config";
 import { getMockStats } from "../../test-utils/mock-stats";
 import { MOCK_PACKAGE_VERSION, setMockErrorResponses, setMockResponses } from "../../test-utils/set-http-mocks";
 
-import { downloadPackage, getEncodedPackageName, queryNpms, run, stripOrganisationFromPackageName } from "./spammer";
+import { downloadPackage, queryNpms, run } from "./spammer";
 
 describe("spammer", () => {
     beforeEach(() => {
         cleanAll();
         MockConsole();
         setMockConfig();
-    });
-
-    describe("stripOrganisationFromPackageName()", () => {
-        it("when packageName is '@babel/core', then returns 'core'", async () => {
-            expect(stripOrganisationFromPackageName("@babel/core")).toEqual("core");
-        });
-
-        it("when packageName is 'core', then returns 'core'", async () => {
-            expect(stripOrganisationFromPackageName("core")).toEqual("core");
-        });
-
-        it("when packageName is '', then returns ''", async () => {
-            expect(stripOrganisationFromPackageName("")).toEqual("");
-        });
-    });
-
-    describe("getEncodedPackageName()", () => {
-        it("when packageName is '@babel/core', then returns '%40babel%2Fcore'", async () => {
-            expect(getEncodedPackageName("@babel/core")).toEqual("%40babel%2Fcore");
-        });
-
-        it("when packageName is 'core', then returns 'core'", async () => {
-            expect(getEncodedPackageName("core")).toEqual("core");
-        });
-
-        it("when packageName is '', then returns ''", async () => {
-            expect(getEncodedPackageName("")).toEqual("");
-        });
     });
 
     describe("queryNpms()", () => {
