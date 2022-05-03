@@ -1,3 +1,10 @@
+## [1.8.6](https://github.com/lachiejames/npm-downloads-increaser/compare/v1.8.5...v1.8.6) (2022-05-03)
+
+
+### Bug Fixes
+
+* update configs and dependencies ([#92](https://github.com/lachiejames/npm-downloads-increaser/issues/92)) ([49c78cf](https://github.com/lachiejames/npm-downloads-increaser/commit/49c78cf91308054c09fa845247b19fba5ed31e36))
+
 ## [1.8.5](https://github.com/lachiejames/npm-downloads-increaser/compare/v1.8.4...v1.8.5) (2021-12-23)
 
 
