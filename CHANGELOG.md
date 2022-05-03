@@ -1,3 +1,10 @@
+## [1.8.7](https://github.com/lachiejames/npm-downloads-increaser/compare/v1.8.6...v1.8.7) (2022-05-03)
+
+
+### Bug Fixes
+
+* add support for scoped packages ([#93](https://github.com/lachiejames/npm-downloads-increaser/issues/93)) ([c3172c7](https://github.com/lachiejames/npm-downloads-increaser/commit/c3172c7d586ad6eae5a41070d7275e33fc597cc3))
+
 ## [1.8.6](https://github.com/lachiejames/npm-downloads-increaser/compare/v1.8.5...v1.8.6) (2022-05-03)
 
 
