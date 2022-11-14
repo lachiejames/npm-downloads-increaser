@@ -31,7 +31,7 @@
     },
     "scripts": {
         "build": "tsc",
-        "start": "ts-node .",
+        "start": "ts-node ./src/run",
         "test": "jest --coverage --detectOpenHandles",
         "format": "prettier . --write & eslint . --fix"
     },
