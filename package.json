@@ -12,7 +12,7 @@
         "prompts": "2.4.2"
     },
     "devDependencies": {
-        "@semantic-release/changelog": "6.0.1",
+        "@semantic-release/changelog": "6.0.3",
         "@semantic-release/git": "10.0.1",
         "@types/jest": "27.5.0",
         "@types/node": "16.11.7",
@@ -24,7 +24,7 @@
         "jest-mock-console": "1.2.3",
         "nock": "13.2.4",
         "prettier": "2.6.2",
-        "semantic-release": "19.0.2",
+        "semantic-release": "19.0.5",
         "ts-jest": "28.0.0",
         "ts-node": "10.7.0",
         "typescript": "4.6.4"
